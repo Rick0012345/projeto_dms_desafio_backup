@@ -106,52 +106,43 @@
         .dropdown {
             float: left;
             overflow: hidden;
-<<<<<<< HEAD
             margin-right: 50px;
         }
 
         .dropdown .dropbtn {
             font-size: 19px;  
-=======
             margin-right: 100px;
         }
 
         .dropdown .dropbtn {
             font-size: 24px;  
->>>>>>> 3d3f7e6 (erro de autenticacao de usuario invalido corrigido. falta apenas resolver o outro erro de direcionamento)
             border: none;
             outline: none;
             color: black;
             padding: 14px 16px;
-<<<<<<< HEAD
             background-color: #2F4F4F;
             font-family: inherit;
             margin: 0;
             color: white;
-=======
             background-color: inherit;
             font-family: inherit;
             margin: 0;
->>>>>>> 3d3f7e6 (erro de autenticacao de usuario invalido corrigido. falta apenas resolver o outro erro de direcionamento)
         }
 
         /* Estilo para o conteúdo do dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
-<<<<<<< HEAD
             background-color: 	#40E0D0;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             margin-left: 190px;
-=======
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             margin-left: 200px;
->>>>>>> 3d3f7e6 (erro de autenticacao de usuario invalido corrigido. falta apenas resolver o outro erro de direcionamento)
         }
 
         .dropdown-content a {
@@ -197,15 +188,12 @@
                 <div class="dropdown-content">
                     <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
                     <a href="#" data-coords="-22.9187,   -42.8224">Centro</a>
-<<<<<<< HEAD
                     <a href="#"data-coords="-22.920255, -42.848793">Parque Nanci</a>
                     <a href="#"data-coords="-22.93041,   -42.883646">São José</a></a>
                     <a href="#"data-coords="-22.914444,  -42.931020">Inoã</a></a>
                     <a href="#"data-coords="-22.929425, -42.967063">Itaocaia</a></a>
                     
-=======
                     <a href="#" data-coords="-22.9287,   -42.8124">Parque Nanci</a>
->>>>>>> 3d3f7e6 (erro de autenticacao de usuario invalido corrigido. falta apenas resolver o outro erro de direcionamento)
                 </div>
             </div>
         </div>
@@ -222,7 +210,6 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-<<<<<<< HEAD
 
         // Função para atualizar o mapa com novas coordenadas
         function updateMap(coords) {
@@ -230,7 +217,6 @@
             map.setView([lat, lng], 15);
         }
 
-=======
         // Adicionando um marcador em Maricá
         var marker = L.marker([-22.9187, -42.8224]).addTo(map);
         marker.bindPopup('<b>Maricá</b><br>Cidade do Rio de Janeiro').openPopup();
@@ -241,7 +227,6 @@
             map.setView([lat, lng], 15);
         }
 
->>>>>>> 3d3f7e6 (erro de autenticacao de usuario invalido corrigido. falta apenas resolver o outro erro de direcionamento)
         // Adicionando evento de clique nos itens do dropdown
         document.querySelectorAll('.dropdown-content a').forEach(link => {
             link.addEventListener('click', function (e) {
@@ -261,7 +246,6 @@
                 .setLatLng(latlng)
                 .setContent(popupContent)
                 .openOn(map);
->>>>>>> 3d3f7e6 (erro de autenticacao de usuario invalido corrigido. falta apenas resolver o outro erro de direcionamento)
         });
 
         // Adicionando evento de clique ao mapa para mostrar as coordenadas
@@ -273,7 +257,7 @@
                 .setContent(popupContent)
                 .openOn(map);
         });
-
+{% comment %} https://github.com/Rick0012345/projeto_dms_desafio_backup.git {% endcomment %}
         {% comment %} var polygon = L.polygon([
             [-22.925038, -42.949316],
             [-22.925986, -42.942617],

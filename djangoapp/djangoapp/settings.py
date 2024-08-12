@@ -130,8 +130,16 @@ LOGIN_REDIRECT_URL = 'main'
 
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
-SOCIALACCOUNT_PROVIDERS = os.getenv('SOCIALACCOUNT_PROVIDERS', '')
-
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        
+        'APP': {
+            'client_id': os.getenv('client_id'),
+            'secret': os.getenv('secret'),
+            'key': os.getenv('key')
+        }
+    }
+}
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
