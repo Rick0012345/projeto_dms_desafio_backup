@@ -1,0 +1,152 @@
+ /* Estilo para o corpo da página */
+ body {
+    background-color: #90ee90;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para a barra de navegação */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    position: fixed;
+    width: 97.5%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li {
+    margin-left: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+/* Estilos para responsividade */
+@media (max-width: 768px) {
+    .navbar-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        display: none; /* Oculto por padrão em telas pequenas */
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: block;
+        cursor: pointer;
+        color: white;
+        font-size: 18px;
+    }
+}
+
+/* Estilo para o título */
+#title {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 80px; /* Espaço para a barra de navegação */
+}
+
+/* Estilo para o contêiner do mapa e do input */
+.map-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 50px 20px;
+}
+
+/* Estilo para a div do mapa */
+#map {
+    width: 60%;
+    height: 500px; /* Altura do mapa */
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+.dropdown .dropbtn {
+    font-size: 19px;  
+    margin-right: 100px;
+}
+
+.dropdown .dropbtn {
+    font-size: 24px;  
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: #2F4F4F;
+    font-family: inherit;
+    margin: 0;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* Estilo para o conteúdo do dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: 	#40E0D0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: 190px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: 200px;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Mostrar o dropdown ao passar o mouse */
+.dropdown:hover .dropdown-content {
+    display: block;
+}

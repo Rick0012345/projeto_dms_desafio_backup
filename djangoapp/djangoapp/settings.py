@@ -122,6 +122,11 @@ STATIC_URL = '/static/'
 # /data/web/static
 STATIC_ROOT = DATA_DIR / 'static'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'login_app/static'),
+]
+
 MEDIA_URL = '/media/'
 # /data/web/media
 MEDIA_ROOT = DATA_DIR / 'media'
