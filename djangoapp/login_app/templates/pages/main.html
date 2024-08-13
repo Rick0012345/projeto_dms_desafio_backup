@@ -9,7 +9,7 @@
     <title>Aluga campos</title>
     <!-- Incluindo o CSS do Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
        
     </style>
@@ -113,11 +113,6 @@
         L.marker([-22.915551,  -42.814552], { icon: img }).addTo(map)
         .bindPopup('Aqui está o campo de futebol!');
         
-        {% comment %} var polygon = L.polygon([
-            [-22.925038, -42.949316],
-            [-22.925986, -42.942617],
-            [-22.930808, -42.949058],
-                                     ]).addTo(map); {% endcomment %}
     </script>
 </body>
 </html>

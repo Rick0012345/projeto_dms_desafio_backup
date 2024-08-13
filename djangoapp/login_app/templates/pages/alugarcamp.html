@@ -1,1 +1,121 @@
-<h1>aqui vc alugara os campos disponiveis</h1>
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluga campos</title>
+    <!-- Incluindo o CSS do Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="window.location.href = '/accounts/profile/'">Aluga campos</div>
+        <ul class="navbar-menu">
+            <li><a href="#perf">Perfil</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#alg-campo">Alugar Campo</a></li>
+            <li><a href="add-campo">Adicionar localidade</a></li>
+            <li><a href="#cntt">Contato</a></li>
+            <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="map-container">
+            <div id="map"></div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Selecione uma região para visualizar os campos disponíveis
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
+                    <a href="#" data-coords="-22.9187,   -42.8224">Centro</a>
+                    <a href="#"data-coords="-22.920255, -42.848793">Parque Nanci</a>
+                    <a href="#"data-coords="-22.93041,   -42.883646">São José</a></a>
+                    <a href="#"data-coords="-22.914444,  -42.931020">Inoã</a></a>
+                    <a href="#"data-coords="-22.929425, -42.967063">Itaocaia</a></a>
+                    
+                    <a href="#" data-coords="-22.9287,   -42.8124">Parque Nanci</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluindo o JavaScript do Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Inicializando o mapa e definindo suas coordenadas iniciais e nível de zoom
+        var map = L.map('map').setView([-22.9187, -42.8224], 15);
+
+        // Adicionando o tile layer do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+
+        // Função para atualizar o mapa com novas coordenadas
+        function updateMap(coords) {
+            var [lat, lng] = coords.split(',').map(Number);
+            map.setView([lat, lng], 15);
+        }
+
+        // Adicionando um marcador em Maricá
+        var marker = L.marker([-22.9187, -42.8224]).addTo(map);
+        marker.bindPopup('<b>Maricá</b><br>Cidade do Rio de Janeiro').openPopup();
+
+        // Função para atualizar o mapa com novas coordenadas
+        function updateMap(coords) {
+            var [lat, lng] = coords.split(',').map(Number);
+            map.setView([lat, lng], 15);
+        }
+
+        // Adicionando evento de clique nos itens do dropdown
+        document.querySelectorAll('.dropdown-content a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Impede o comportamento padrão do link
+                var coords = this.getAttribute('data-coords');
+                updateMap(coords);
+            });
+        });
+
+        // Adicionando evento de clique ao mapa para mostrar as coordenadas
+        map.on('click', function(e) {
+            var latlng = e.latlng;
+            var popupContent = `Latitude: ${latlng.lat.toFixed(6)}<br>Longitude: ${latlng.lng.toFixed(6)}`;
+            L.popup()
+                .setLatLng(latlng)
+                .setContent(popupContent)
+                .openOn(map);
+        });
+
+        // Adicionando evento de clique ao mapa para mostrar as coordenadas
+        map.on('click', function(e) {
+            var latlng = e.latlng;
+            var popupContent = `Latitude: ${latlng.lat.toFixed(6)}<br>Longitude: ${latlng.lng.toFixed(6)}`;
+            L.popup()
+                .setLatLng(latlng)
+                .setContent(popupContent)
+                .openOn(map);
+        });
+        {% comment %} testando a inserção de pins customizados no mapa {% endcomment %}
+        var img = L.icon({
+            iconUrl: 'images/campo-de-futebol.png',
+
+        });
+        L.marker([-22.915551,  -42.814552], { icon: img }).addTo(map)
+        .bindPopup('Aqui está o campo de futebol!');
+        
+    </script>
+</body>
+</html>
+
+
+

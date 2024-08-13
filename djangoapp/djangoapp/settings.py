@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # /data/web/static
-STATIC_ROOT = DATA_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -141,7 +141,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'APP': {
             'client_id': os.getenv('client_id'),
             'secret': os.getenv('secret'),
-            'key': os.getenv('key')
+            'key': ''
         }
     }
 }
