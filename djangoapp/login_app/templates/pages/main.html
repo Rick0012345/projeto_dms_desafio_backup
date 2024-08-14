@@ -38,11 +38,9 @@
                 <div class="dropdown-content">
                     <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
                     <a href="#" data-coords="-22.9187,   -42.8224">Centro</a>
-                    <a href="#"data-coords="-22.920255, -42.848793">Parque Nanci</a>
                     <a href="#"data-coords="-22.93041,   -42.883646">São José</a></a>
                     <a href="#"data-coords="-22.914444,  -42.931020">Inoã</a></a>
                     <a href="#"data-coords="-22.929425, -42.967063">Itaocaia</a></a>
-                    
                     <a href="#" data-coords="-22.9287,   -42.8124">Parque Nanci</a>
                 </div>
             </div>
@@ -107,8 +105,7 @@
         });
         {% comment %} testando a inserção de pins customizados no mapa {% endcomment %}
         var img = L.icon({
-            iconUrl: 'images/campo-de-futebol.png',
-
+            iconUrl: '{% static 'images/campo-de-futebol.png' %}',
         });
         L.marker([-22.915551,  -42.814552], { icon: img }).addTo(map)
         .bindPopup('Aqui está o campo de futebol!');
