@@ -28,6 +28,7 @@
     </nav>
 
     <div class="content">
+        <h2 id= 'title'>selecione o local e clique em salvar para registrar o campo</h2>
         <div class="map-container">
             <div id="map"></div>
 
@@ -100,25 +101,42 @@
             });
         });
 
-        // Adicionando evento de clique ao mapa para mostrar as coordenadas
-        map.on('click', function(e) {
-            var latlng = e.latlng;
-            var popupContent = `Latitude: ${latlng.lat.toFixed(6)}<br>Longitude: ${latlng.lng.toFixed(6)}`;
-            L.popup()
-                .setLatLng(latlng)
-                .setContent(popupContent)
-                .openOn(map);
-        });
-
         // Testando a inserção de pins customizados no mapa
         var img = L.icon({
             iconUrl: '{% static 'images/campo-de-futebol.png' %}',
         });
 
-        L.marker([-22.915551,  -42.814552], { icon: img }).addTo(map)
-            .bindPopup('Aqui está o campo de futebol!');
         
+        // Adicionando evento de clique ao mapa para capturar as coordenadas e inserir no formulário
+        map.on('click', function(e) {
+        var latlng = e.latlng;
+
+    // Preenchendo o formulário com as coordenadas capturadas
+    document.getElementById('id_latitude').value = latlng.lat.toFixed(6);
+    document.getElementById('id_longitude').value = latlng.lng.toFixed(6);
+
+    // Exibindo um popup com as coordenadas
+    var popupContent = `Latitude: ${latlng.lat.toFixed(6)}<br>Longitude: ${latlng.lng.toFixed(6)}`;
+    L.popup()
+        .setLatLng(latlng)
+        .setContent(popupContent)
+        .openOn(map);
+});
+
+var data = {{ coordenadas|safe }}
+console.log(data);
+// Exibindo os marcadores salvos no banco de dados
+    data.forEach(function(coordenada) {
+        var img = L.icon({
+            iconUrl: '{% static 'images/campo-de-futebol.png' %}',
+        });
+
+        console.log("coordenada")
+        L.marker([coordenada.latitude, coordenada.longitude], { icon: img }).addTo(map)
+        .bindPopup('Aqui está o campo de futebol!');
+    })
     
+
     </script>
 </body>
 </html>
