@@ -1,159 +1,152 @@
- /* Estilo para o corpo da página */
- body {
-    background-color: #90ee90;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Estilo para a barra de navegação */
+/* Estilizando a barra de navegação */
 .navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-    position: fixed;
-    width: 97.5%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    font-family: Arial, sans-serif;
 }
 
 .navbar-logo {
-    font-size: 20px;
+    font-size: 24px;
+    cursor: pointer;
     font-weight: bold;
-    color: white;
 }
 
 .navbar-menu {
-    display: flex;
-    list-style-type: none;
+    list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .navbar-menu li {
-    margin-left: 10px;
+    margin: 0 15px;
 }
 
-.navbar a {
+.navbar-menu a {
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    font-size: 18px;
 }
 
-.navbar a:hover {
-    background-color: #555;
+.navbar-menu a:hover {
+    text-decoration: underline;
 }
 
-/* Estilos para responsividade */
-@media (max-width: 768px) {
-    .navbar-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        display: none; /* Oculto por padrão em telas pequenas */
-    }
-
-    .navbar-menu.active {
-        display: flex;
-    }
-
-    .navbar-toggle {
-        display: block;
-        cursor: pointer;
-        color: white;
-        font-size: 18px;
-    }
-}
-
-/* Estilo para o título */
+/* Estilizando o título */
 #title {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 35px;
     text-align: center;
-    margin-top: 80px; /* Espaço para a barra de navegação */
+    margin: 20px 0;
+    font-size: 28px;
 }
 
-/* Estilo para o contêiner do mapa e do input */
+/* Estilizando o container do mapa */
 .map-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+/* Estilizando o mapa */
+#map {
+    height: 50%;
+    width: 100%;
+}
+
+/* Estilizando o layout para o dropdown e o formulário lado a lado */
+.container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 50px 20px;
-}
-
-/* Estilo para a div do mapa */
-#map {
-    width: 60%;
-    height: 500px; /* Altura do mapa */
+    gap: 20px; /* Espaçamento entre o dropdown e o formulário */
+    flex-wrap: wrap; /* Permite que o conteúdo envolva em telas menores */
 }
 
 .dropdown {
-    float: left;
-    overflow: hidden;
-    margin-right: 50px;
+    flex: 1;
+    min-width: 200px; /* Largura mínima para o dropdown */
+    position: relative;
 }
 
-.dropdown .dropbtn {
-    font-size: 19px;  
-    margin-right: 100px;
-}
-
-.dropdown .dropbtn {
-    font-size: 24px;  
-    border: none;
-    outline: none;
-    color: black;
-    padding: 14px 16px;
-    background-color: #2F4F4F;
-    font-family: inherit;
-    margin: 0;
+.dropbtn {
+    background-color: #333;
     color: white;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-/* Estilo para o conteúdo do dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: 	#40E0D0;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    margin-left: 190px;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    margin-left: 200px;
+    border-radius: 4px;
 }
 
 .dropdown-content a {
-    float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: left;
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #f1f1f1;
 }
 
-/* Mostrar o dropdown ao passar o mouse */
 .dropdown:hover .dropdown-content {
     display: block;
 }
-#title {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 35px;
-    text-align: center;
-    margin-top: 80px; /* Espaço para a barra de navegação */
-    margin-bottom: 0px;
+
+.dropdown:hover .dropbtn {
+    background-color: #555;
+}
+
+/* Estilizando o formulário */
+form {
+    flex: 2; /* Faz com que o formulário ocupe mais espaço que o dropdown */
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Estilizando os campos do formulário */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="hidden"] {
+    display: none;
 }

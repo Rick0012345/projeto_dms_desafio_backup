@@ -24,8 +24,6 @@ def areaProprietario(request):
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
 
-    print(query)
-
     if request.method == 'POST':
         form = CoordenadaForm(request.POST)
         if form.is_valid():

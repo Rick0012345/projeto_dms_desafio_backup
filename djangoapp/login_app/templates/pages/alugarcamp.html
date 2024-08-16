@@ -1,6 +1,5 @@
 {% load static %}
 {% load i18n %}
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,9 +9,6 @@
     <!-- Incluindo o CSS do Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
-       
-    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -26,50 +22,45 @@
             <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
         </ul>
     </nav>
-
+    <h3 id='title'>clique no local do mapa para e clique em salvar para cadastrar seu campo</h3>
     <div class="content">
-        <h2 id= 'title'>selecione o local e clique em salvar para registrar o campo</h2>
+        
         <div class="map-container">
             <div id="map"></div>
 
-            <div class="dropdown">
-                <button class="dropbtn">Escolha uma região para registrar o seu campo 
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
-                    <a href="#" data-coords="-22.9187,   -42.8224">Centro</a>
-                    <a href="#"data-coords="-22.93041,   -42.883646">São José</a></a>
-                    <a href="#"data-coords="-22.914444,  -42.931020">Inoã</a></a>
-                    <a href="#"data-coords="-22.929425, -42.967063">Itaocaia</a></a>
-                    <a href="#" data-coords="-22.9287,   -42.8124">Parque Nanci</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <form id="campoForm" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-    
-        {{ formset.management_form }}
-        {% for form in formset %}
-            <div class="form-group">
-                {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {% if field.field.widget.input_type == 'hidden' %}
-                            {{ field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
+            <div class="container">
+                <div class="dropdown">
+                    <button class="dropbtn">Escolha uma região para registrar o seu campo 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
+                        <a href="#" data-coords="-22.9187, -42.8224">Centro</a>
+                        <a href="#" data-coords="-22.93041, -42.883646">São José</a>
+                        <a href="#" data-coords="-22.914444, -42.931020">Inoã</a>
+                        <a href="#" data-coords="-22.929425, -42.967063">Itaocaia</a>
+                        <a href="#" data-coords="-22.9287, -42.8124">Parque Nanci</a>
                     </div>
-                {% endfor %}
+                </div>
+            
+                <form id="campoForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        <div class="form-group">
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit">Salvar</button>
+                </form>
             </div>
-        {% endfor %}
-    
-        <button type="submit">Salvar</button>
-    </form>
+            
 
     <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
