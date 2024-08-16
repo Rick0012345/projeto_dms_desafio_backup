@@ -55,7 +55,9 @@
     height: 50%;
     width: 100%;
 }
-
+body{
+    background-color: rgb(65, 157, 41);
+}
 /* Estilizando o layout para o dropdown e o formulário lado a lado */
 .container {
     display: flex;
@@ -116,7 +118,7 @@ form {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: #55a995;
 }
 
 .form-group {

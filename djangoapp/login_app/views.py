@@ -11,8 +11,12 @@ def loginPage(request):
 
 @login_required(redirect_field_name='account_login')
 def mainPage(request):
+    query = Coordenada.objects.all()  
+    coordenadas = []
+    for i in query:
+        coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
 
-    return render(request,"pages/main.html")
+    return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas)})
 
 def registerPage(request):
 
