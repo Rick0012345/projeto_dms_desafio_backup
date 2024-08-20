@@ -95,9 +95,7 @@
         // Testando a inserção de pins customizados no mapa
         var img = L.icon({
             iconUrl: '{% static 'images/campo-de-futebol.png' %}',
-        });
-
-        
+        });    
         // Adicionando evento de clique ao mapa para capturar as coordenadas e inserir no formulário
         map.on('click', function(e) {
         var latlng = e.latlng;

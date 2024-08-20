@@ -15,7 +15,7 @@ def mainPage(request):
     coordenadas = []
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-
+    
     return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas)})
 
 def registerPage(request):
