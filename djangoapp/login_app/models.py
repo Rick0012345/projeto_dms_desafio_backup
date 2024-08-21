@@ -13,9 +13,9 @@ class Coordenada(models.Model):
         return str(f"Latitude :{self.latitude} | Longitude: {self.longitude}")
     
 class Reservas(models.Model):
-    dia = models.DateField(_("Dia"), auto_now = True, auto_now_add=True)
-    inicio = models.TimeField(_("inicio"), auto_now = True, auto_now_add=True)
-    final = models.TimeField(_("final"), auto_now = True, auto_now_add=True)
+    dia = models.DateField()
+    inicio = models.TimeField()
+    final = models.TimeField()
 
     class Meta:
         verbose_name = 'Reserva'

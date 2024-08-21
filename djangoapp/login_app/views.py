@@ -22,7 +22,7 @@ def mainPage(request):
             form.save()
             return redirect('main')
     
-    return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas)})
+    return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas), 'form': ReservasForm()})
 
 def registerPage(request):
 
