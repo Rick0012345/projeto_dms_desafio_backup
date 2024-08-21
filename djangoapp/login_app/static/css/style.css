@@ -43,17 +43,11 @@
     font-size: 28px;
 }
 
-/* Estilizando o container do mapa */
-.map-container {
-    position: relative;
-    width: 100%;
-    height: 500px;
-}
 
 /* Estilizando o mapa */
 #map {
-    height: 50%;
-    width: 100%;
+    height: 100%;
+    /* width: 100%; */
 }
 body{
     background-color: rgb(65, 157, 41);
@@ -69,7 +63,8 @@ body{
 .dropdown {
     flex: 1;
     min-width: 200px; /* Largura mínima para o dropdown */
-    position: relative;
+    /* position: relative; */
+    height: 50px;
 }
 
 .dropbtn {
@@ -151,5 +146,51 @@ input, select, textarea {
 
 input[type="hidden"] {
     display: none;
+}
+
+
+/* $$$$$$$$############$$$$$$$$$$$$###########$$$$$$$$$$$ */
+   /* Estilizando o layout com grid */
+   .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
+    grid-template-rows: auto auto; /* O mapa ocupa uma linha, e o formulário/dropdown ocupam outra */
+    gap: 20px; /* Espaço entre os elementos */
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima do grid */
+    margin: 0 auto; /* Centraliza o grid na página */
+}
+
+/* O mapa ocupa toda a largura disponível */
+.map-container {
+    grid-column: 1 / 3; /* Faz o mapa ocupar as duas colunas na primeira linha */
+    width: 100%;
+    height: 200px; /* Ajuste a altura do mapa conforme necessário */
+}
+
+/* Estilizando o dropdown e o formulário para ocuparem uma coluna cada */
+.dropdown {
+    flex: 1;
+}
+
+.form {
+    flex: 1;
+    max-width: 100%; /* Impede que o formulário ultrapasse a largura da coluna */
+}
+
+.dropdown-content {
+    min-width: 200px; /* Largura mínima para o dropdown */
+    margin-left: 150px
+}
+
+/* Estilizando o botão de submit e dropdown */
+.dropbtn,
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
 }
 

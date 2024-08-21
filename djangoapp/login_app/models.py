@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
 # Create your models here.
 
 class Coordenada(models.Model):
@@ -13,6 +14,7 @@ class Coordenada(models.Model):
         return str(f"Latitude :{self.latitude} | Longitude: {self.longitude}")
     
 class Reservas(models.Model):
+    from django import forms
     dia = models.DateField()
     inicio = models.TimeField()
     final = models.TimeField()

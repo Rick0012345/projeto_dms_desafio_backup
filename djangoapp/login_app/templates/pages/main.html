@@ -30,28 +30,28 @@
     <div class="content">
         <div class="map-container">
             <div id="map"></div>
-
-            <div class="dropdown">
-                <button class="dropbtn">Selecione uma região para visualizar os campos disponíveis
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
-                    <a href="#" data-coords="-22.9187,   -42.8224">Centro</a>
-                    <a href="#"data-coords="-22.93041,   -42.883646">São José</a></a>
-                    <a href="#"data-coords="-22.914444,  -42.931020">Inoã</a></a>
-                    <a href="#"data-coords="-22.929425, -42.967063">Itaocaia</a></a>
-                    <a href="#" data-coords="-22.9287,   -42.8124">Parque Nanci</a>
-                </div>
+        </div>
+    
+        <div class="dropdown">
+            <button class="dropbtn">Selecione uma região para visualizar os campos disponíveis
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
+                <a href="#" data-coords="-22.9187, -42.8224">Centro</a>
+                <a href="#" data-coords="-22.93041, -42.883646">São José</a>
+                <a href="#" data-coords="-22.914444, -42.931020">Inoã</a>
+                <a href="#" data-coords="-22.929425, -42.967063">Itaocaia</a>
+                <a href="#" data-coords="-22.9287, -42.8124">Parque Nanci</a>
             </div>
         </div>
+    
+        <form id="coordForm" method="post" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
     </div>
-
-    <form id="coordForm" method="post" class="form" enctype="multipart/form-data">  
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
     
 
     
