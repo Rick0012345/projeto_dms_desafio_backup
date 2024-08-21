@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import CoordenadaForm
+from .forms import CoordenadaForm, ReservasForm
 from .models import Coordenada
 import json
 # Create your views here.
@@ -15,6 +15,12 @@ def mainPage(request):
     coordenadas = []
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
+
+    if request.method == 'POST':
+        form = ReservasForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
     
     return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas)})
 

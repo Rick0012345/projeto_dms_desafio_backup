@@ -47,6 +47,24 @@
         </div>
     </div>
 
+    <form id="coordForm" method="post" enctype="multipart/form-data">  
+        {% csrf_token %}
+                    {{ form.as_p }}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        <div class="form-group">
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit">Salvar</button>
+    </form>
+    
+
     <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
