@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CoordenadaForm, ReservasForm
-from .models import Coordenada
+from .models import Coordenada, CadastroUsuario
 import json
 # Create your views here.
 
@@ -33,7 +33,6 @@ def areaProprietario(request):
     coordenadas = []
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-
     if request.method == 'POST':
         form = CoordenadaForm(request.POST)
         if form.is_valid():
@@ -41,6 +40,14 @@ def areaProprietario(request):
             return redirect('alugar-campo')
     else:
         form = CoordenadaForm()
-
-
     return render(request,"pages/alugarcamp.html", {'form': form, 'coordenadas': json.dumps(coordenadas)})
+
+# @login_required(redirect_field_name='account_login')
+def profile(request):
+
+    username = request.user
+    email = request.user.email
+
+    return render(request,"pages/profile.html",{'username': username,'email': email})
+
+

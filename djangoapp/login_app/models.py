@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.auth import get_user_model
 # Create your models here.
 
 class Coordenada(models.Model):
@@ -25,6 +25,13 @@ class Reservas(models.Model):
 
     def __str__(self):
         return str(f"dia :{self.dia} | inicio: {self.inicio} | final: {self.final}")
+
+
+class CadastroUsuario(models.Model):
+    User = get_user_model()
+    User.objects.all()
+
+
 
    
    
