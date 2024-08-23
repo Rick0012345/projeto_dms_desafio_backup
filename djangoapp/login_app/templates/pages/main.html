@@ -19,7 +19,6 @@
         <div class="navbar-logo">Aluga campos</div>
         <ul class="navbar-menu">
             <li><a href="perfilUsuario">Perfil</a></li>
-            <li><a href="#alg-campo">Alugar Campo</a></li>
             <li><a href="add-campo">Adicionar localidade</a></li>
             <li><a href="#cntt">Contato</a></li>
             <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
@@ -75,9 +74,23 @@
 
         // Adicionando um marcador em Maricá
         var marker = L.marker([-22.9187, -42.8224]).addTo(map);
-        marker.bindPopup('<b>Maricá</b><br>Cidade do Rio de Janeiro').openPopup();
+        marker.bindPopup('<b>Maricá</b>').openPopup();
+        
+        var marker = L.marker([-22.930808, -42.884595]).addTo(map);
+        marker.bindPopup('<b>São José</b>').openPopup();
 
-        // Função para atualizar o mapa com novas coordenadas
+        var marker = L.marker([-22.929425, -42.967063]).addTo(map);
+        marker.bindPopup('<b>Itaocaia</b>').openPopup();
+
+        var marker = L.marker([-22.963530,-42.97589 ]).addTo(map);
+        marker.bindPopup('<b>Itaipuaçu</b>').openPopup();
+        
+        var marker = L.marker([ -22.914207, -42.930515]).addTo(map);
+        marker.bindPopup('<b>Inoã</b>').openPopup();
+
+        var marker = L.marker([-22.9287, -42.8124]).addTo(map);
+        marker.bindPopup('<b>Parque Nanci</b>').openPopup();
+
         function updateMap(coords) {
             var [lat, lng] = coords.split(',').map(Number);
             map.setView([lat, lng], 15);
