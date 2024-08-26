@@ -50,4 +50,7 @@ def profile(request):
 
     return render(request,"pages/profile.html",{'username': username,'email': email})
 
+def listacampos(request):
+    return render(request,"pages/listcampos.html")
+
 

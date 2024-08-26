@@ -31,7 +31,8 @@ class CadastroUsuario(models.Model):
     User = get_user_model()
     User.objects.all()
 
-
+class ImgUser(models.Model):
+    imagem = models.ImageField(upload_to='images/')
 
    
    

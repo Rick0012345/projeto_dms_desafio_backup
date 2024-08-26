@@ -117,10 +117,9 @@ console.log(data);
         var img = L.icon({
             iconUrl: '{% static 'images/campo-de-futebol.png' %}',
         });
-
         console.log("coordenada")
         L.marker([coordenada.latitude, coordenada.longitude], { icon: img }).addTo(map)
-        .bindPopup('Aqui está o campo de futebol!');
+        .bindPopup("<a href= http://localhost:8000/accounts/profile/listas> Ver mais </a>")
     })
     
 
