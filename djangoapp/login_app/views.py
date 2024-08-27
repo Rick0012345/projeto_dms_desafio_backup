@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CoordenadaForm, ReservasForm
-from .models import Coordenada, CadastroUsuario
+from .models import Coordenada
 import json
 # Create your views here.
 
@@ -11,17 +11,19 @@ def loginPage(request):
 
 @login_required(redirect_field_name='account_login')
 def mainPage(request):
+    global reservas
     query = Coordenada.objects.all()  
     coordenadas = []
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-
+    
+    reservas = 0
     if request.method == 'POST':
         form = ReservasForm(request.POST)
         if form.is_valid():
             form.save()
+            reservas += 1
             return redirect('main')
-    
     return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas), 'form': ReservasForm()})
 
 def registerPage(request):
@@ -47,8 +49,9 @@ def profile(request):
 
     username = request.user
     email = request.user.email
+   
 
-    return render(request,"pages/profile.html",{'username': username,'email': email})
+    return render(request,"pages/profile.html",{'username': username,'email': email,'form':form, 'reservas':reservas})
 
 def listacampos(request):
     return render(request,"pages/listcampos.html")

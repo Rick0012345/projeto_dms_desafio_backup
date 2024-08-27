@@ -1,0 +1,65 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluga campos</title>
+    <!-- Incluindo o CSS do Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{% static 'css/styleprofile.css' %}">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="window.location.href = '/accounts/profile/'">Aluga campos</div>
+        <ul class="navbar-menu">
+            <li><a href="#perf">Perfil</a></li>
+            <li><a href="add-campo">Adicionar localidade</a></li>
+            <li><a href="#cntt">Contato</a></li>
+            <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+        </ul>
+    </nav>
+
+    <div id="wrapper">
+        <div id="content">
+            <ul id="list">
+                <li class="liclass" id="linome">Nome: {{ username }}</li>
+                <li class="liclass" id="liemail">Email: {{ email }}</li>
+                <form action="{% url 'account_change_password' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Alterar senha">
+                    <br><br><br>
+                    <p>minha tag img</p>
+                    {{img}}
+                    <p>esta é minha tag form</p>
+                    {{form}}
+                    
+                    
+                <li class="liclass"> Qnt de reservas total: {{reservas}} </li>
+                <li class="liclass" > Dinheiro gasto em aluguéis:</li>
+                    </form>
+            </ul>
+
+        </div>
+        <div id="side-container">
+            <!-- Conteúdo adicional pode ser adicionado aqui -->
+        </div>
+    </div>
+    
+
+    
+
+    
+
+    <script>
+    </script>
+</body>
+</html>
+
+
+

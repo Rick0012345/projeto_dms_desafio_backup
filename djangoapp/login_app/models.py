@@ -1,8 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 # Create your models here.
-
 class Coordenada(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -18,6 +17,7 @@ class Reservas(models.Model):
     dia = models.DateField()
     inicio = models.TimeField()
     final = models.TimeField()
+    # dinheiroAplicado = models.DecimalField(max_digits=5, decimal_places=2)
 
     class Meta:
         verbose_name = 'Reserva'
@@ -27,12 +27,14 @@ class Reservas(models.Model):
         return str(f"dia :{self.dia} | inicio: {self.inicio} | final: {self.final}")
 
 
-class CadastroUsuario(models.Model):
-    User = get_user_model()
-    User.objects.all()
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    img = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
-class ImgUser(models.Model):
-    imagem = models.ImageField(upload_to='images/')
+
+
+    
+    
 
    
    
