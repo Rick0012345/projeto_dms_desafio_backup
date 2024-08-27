@@ -28,21 +28,19 @@
     <div id="wrapper">
         <div id="content">
             <ul id="list">
-                <li class="liclass" id="linome">Nome: {{ username }}</li>
-                <li class="liclass" id="liemail">Email: {{ email }}</li>
+                <img src="{{ profile.img.url }}" alt="imagem-de-perfil">
+                <li class="liclass" id="linome">Nome: {{ profile.username }}</li>
+                <li class="liclass" id="liemail">Email: {{ profile.email }}</li>
                 <form action="{% url 'account_change_password' %}" method="post">
                     {% csrf_token %}
                     <input type="submit" value="Alterar senha">
                     <br><br><br>
-                    <p>minha tag img</p>
-                    {{img}}
-                    <p>esta é minha tag form</p>
-                    {{form}}
-                    
-                    
-                <li class="liclass"> Qnt de reservas total: {{reservas}} </li>
-                <li class="liclass" > Dinheiro gasto em aluguéis:</li>
                     </form>
+                    
+                    
+                    
+                    <li class="liclass"> Qnt de reservas total: em desenvolvimento </li>
+                    <li class="liclass" > Dinheiro gasto em aluguéis: em desenvolvimento</li>
             </ul>
 
         </div>

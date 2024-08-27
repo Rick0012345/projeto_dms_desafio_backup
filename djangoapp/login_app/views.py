@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import CoordenadaForm, ReservasForm
-from .models import Coordenada
+from django.contrib import messages
+from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm
+from .models import Coordenada, Profile
 import json
 # Create your views here.
 
@@ -46,12 +47,20 @@ def areaProprietario(request):
 
 # @login_required(redirect_field_name='account_login')
 def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
-    username = request.user
-    email = request.user.email
-   
-
-    return render(request,"pages/profile.html",{'username': username,'email': email,'form':form, 'reservas':reservas})
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='users-profile')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+    profile = Profile.objects.get(user_id=request.user.id)
+    return render(request,"pages/profile.html",{'profile': profile,'user_form': user_form, 'profile_form': profile_form})
 
 def listacampos(request):
     return render(request,"pages/listcampos.html")

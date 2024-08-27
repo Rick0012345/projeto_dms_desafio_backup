@@ -1,6 +1,7 @@
 from django import forms
-from .models import Coordenada , Reservas
+from .models import Coordenada , Reservas, Profile
 
+from django.contrib.auth.models import User
 class CoordenadaForm(forms.ModelForm):
     class Meta:
         model = Coordenada
@@ -15,9 +16,21 @@ class ReservasForm(forms.ModelForm):
         model = Reservas
         fields = ['dia', 'inicio', 'final']
 
-# class ImageForm(forms.ModelForm):
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=100,
+                               required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-#     class Meta:
-#         imagem = forms.ImageField(widget=forms.ImageField())
-#         model = ImgUser
-#         fields = ['imagem']
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class UpdateProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+
+    class Meta:
+        model = Profile
+        fields = ['avatar']
