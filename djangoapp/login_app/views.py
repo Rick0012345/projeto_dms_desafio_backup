@@ -48,19 +48,22 @@ def areaProprietario(request):
 # @login_required(redirect_field_name='account_login')
 def profile(request):
     if request.method == 'POST':
+        profile = Profile.objects.get(user=request.user)
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
-
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+        print(request.user) 
+        print(profile)
         if user_form.is_valid() and profile_form.is_valid():
+            print(profile_form.cleaned_data)
             user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='users-profile')
+            return redirect(to='perfilUsuario')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
-    profile = Profile.objects.get(user_id=request.user.id)
-    return render(request,"pages/profile.html",{'profile': profile,'user_form': user_form, 'profile_form': profile_form})
+    
+    return render(request,"pages/profile.html",{'user_form': user_form, 'profile_form': profile_form})
 
 def listacampos(request):
     return render(request,"pages/listcampos.html")
