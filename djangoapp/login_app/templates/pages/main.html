@@ -47,6 +47,35 @@
         <form id="coordForm" method="post" class="form" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const inicioField = document.getElementById('id_inicio');
+                    const finalField = document.getElementById('id_final');
+                    const valorField = document.getElementById('id_valor_total');
+        
+                    function calculateValorTotal() {
+                        const inicio = inicioField.value;
+                        const final = finalField.value;
+        
+                        if (inicio && final) {
+                            const inicioTime = new Date('1970-01-01T' + inicio + 'Z');
+                            const finalTime = new Date('1970-01-01T' + final + 'Z');
+                            const duration = (finalTime - inicioTime) / 3600000; // em horas
+        
+                            if (duration > 0) {
+                                const valorPorHora = 50; // Valor fixo por hora
+                                const valorTotal = duration * valorPorHora;
+                                valorField.value = valorTotal.toFixed(2);
+                            } else {
+                                valorField.value = '0.00';
+                            }
+                        }
+                    }
+        
+                    inicioField.addEventListener('change', calculateValorTotal);
+                    finalField.addEventListener('change', calculateValorTotal);
+                });
+            </script>
             <button type="submit">Salvar</button>
         </form>
     </div>

@@ -15,10 +15,11 @@ class Coordenada(models.Model):
     
 class Reservas(models.Model):
     from django import forms
+    
     dia = models.DateField()
     inicio = models.TimeField()
     final = models.TimeField()
-    # dinheiroAplicado = models.DecimalField(max_digits=5, decimal_places=2)
+    valor_total = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 
     class Meta:
         verbose_name = 'Reserva'

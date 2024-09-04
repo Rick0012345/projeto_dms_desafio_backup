@@ -17,7 +17,7 @@ def mainPage(request):
     coordenadas = []
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-    
+
     reservas = 0
     if request.method == 'POST':
         form = ReservasForm(request.POST)
@@ -25,7 +25,13 @@ def mainPage(request):
             form.save()
             reservas += 1
             return redirect('main')
-    return render(request,"pages/main.html", {'coordenadas': json.dumps(coordenadas), 'form': ReservasForm()})
+        else:
+            messages.error(request, 'O horário final deve ser depois do horário de início.')
+        context = {
+            'coordenadas': json.dumps(coordenadas),
+            'form': ReservasForm()
+        }
+    return render(request,"pages/main.html", context)
 
 def registerPage(request):
 
