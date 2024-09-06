@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm
-from .models import Coordenada, Profile
+from .models import Coordenada, Profile, Reservas
 import json
+from datetime import datetime
 # Create your views here.
+# aparentemente ao executar o programa, a view tenta fazer uma query e um append em bancos de dados que não existem,
+# vou precisar fazer com que antes de executar o sistema tente criar as tabelas
 
 def loginPage(request):
-
     return render(request,"account/login.html")
 
 @login_required(redirect_field_name='account_login')
@@ -15,26 +17,46 @@ def mainPage(request):
     global reservas
     query = Coordenada.objects.all()  
     coordenadas = []
+    
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-
+    
     reservas = 0
     if request.method == 'POST':
-        form = ReservasForm(request.POST)
+        ini = datetime.strptime(request.POST.get('inicio'),'%H:%M')
+        fin = datetime.strptime(request.POST.get('final'),'%H:%M')
+
+        if fin<=ini:
+            messages.error(request, 'O horário de início deve ser antes do horário de final')
+        duracao = fin - ini
+        duracao_em_horas = duracao.total_seconds() / 3600
+        valor_por_hora = 50 #ALTERAR PARA QUE PEGUE O VALOR DO CAMPO ESPECÍFICO POR HORA
+        valor_total = duracao_em_horas * valor_por_hora
+        
+        instancia = Reservas(valor_total = valor_total) #depois trocar para o singular (RESERVA)
+        
+        form = ReservasForm(data=request.POST,instance=instancia)
+        
+        print(request.POST)
         if form.is_valid():
             form.save()
             reservas += 1
+            messages.success(request, 'Reservado com sucesso')
             return redirect('main')
+            
+
         else:
-            messages.error(request, 'O horário final deve ser depois do horário de início.')
-        context = {
+            print(form.errors)
+            messages.error(request, 'Erro ao reservar campo')
+    
+    context = {
             'coordenadas': json.dumps(coordenadas),
             'form': ReservasForm()
         }
     return render(request,"pages/main.html", context)
 
 def registerPage(request):
-
+    
     return render(request,"account/signup.html")
 
 def areaProprietario(request):
@@ -49,7 +71,11 @@ def areaProprietario(request):
             return redirect('alugar-campo')
     else:
         form = CoordenadaForm()
-    return render(request,"pages/alugarcamp.html", {'form': form, 'coordenadas': json.dumps(coordenadas)})
+    context ={
+        'form': form,
+        'coordenadas': json.dumps(coordenadas)
+    }
+    return render(request,"pages/alugarcamp.html", context)
 
 # @login_required(redirect_field_name='account_login')
 def profile(request):

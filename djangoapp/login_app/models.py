@@ -6,9 +6,13 @@ from PIL import Image
 class Coordenada(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
+    valor_hora = models.DecimalField(max_digits=10, decimal_places=2,default=0)
     class Meta:
         verbose_name = 'Coordenada'
         verbose_name_plural = 'Coordenadas'
+
+    # def save(self, *args, **kwargs):
+    #     super().save()
         
     def __str__(self):
         return str(f"Latitude :{self.latitude} | Longitude: {self.longitude}")
@@ -19,7 +23,7 @@ class Reservas(models.Model):
     dia = models.DateField()
     inicio = models.TimeField()
     final = models.TimeField()
-    valor_total = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     class Meta:
         verbose_name = 'Reserva'
