@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login_app', '0007_profile'),
+        ("login_app", "0007_profile"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='reservas',
-            name='valor_total',
+            model_name="reservas",
+            name="valor_total",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=5),
         ),
     ]

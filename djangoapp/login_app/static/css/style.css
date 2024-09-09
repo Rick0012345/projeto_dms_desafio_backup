@@ -226,8 +226,3 @@ button[type="submit"] {
     opacity: 1;
     transition: opacity 0.5s ease-in-out; /* Para animação de desaparecimento */
 }
-.hidden {
-    opacity: 0;
-    pointer-events: none; /* Impede cliques enquanto desaparece */
-    display: none;
-}

@@ -7,20 +7,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Campo',
+            name="Campo",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('latitude', models.FloatField()),
-                ('longitude', models.FloatField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("latitude", models.FloatField()),
+                ("longitude", models.FloatField()),
             ],
             options={
-                'verbose_name': 'Campo',
-                'verbose_name_plural': 'Campos',
+                "verbose_name": "Campo",
+                "verbose_name_plural": "Campos",
             },
         ),
     ]

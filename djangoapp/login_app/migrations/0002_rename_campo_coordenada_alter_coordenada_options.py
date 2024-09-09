@@ -6,16 +6,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login_app', '0001_initial'),
+        ("login_app", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Campo',
-            new_name='Coordenada',
+            old_name="Campo",
+            new_name="Coordenada",
         ),
         migrations.AlterModelOptions(
-            name='coordenada',
-            options={'verbose_name': 'Coordenada', 'verbose_name_plural': 'Coordenadas'},
+            name="coordenada",
+            options={
+                "verbose_name": "Coordenada",
+                "verbose_name_plural": "Coordenadas",
+            },
         ),
     ]

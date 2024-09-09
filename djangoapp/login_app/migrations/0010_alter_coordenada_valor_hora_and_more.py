@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login_app', '0009_coordenada_valor_hora_alter_reservas_valor_total'),
+        ("login_app", "0009_coordenada_valor_hora_alter_reservas_valor_total"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='coordenada',
-            name='valor_hora',
+            model_name="coordenada",
+            name="valor_hora",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=10),
         ),
         migrations.AlterField(
-            model_name='reservas',
-            name='valor_total',
+            model_name="reservas",
+            name="valor_total",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=10),
         ),
     ]

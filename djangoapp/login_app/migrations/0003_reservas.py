@@ -6,21 +6,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login_app', '0002_rename_campo_coordenada_alter_coordenada_options'),
+        ("login_app", "0002_rename_campo_coordenada_alter_coordenada_options"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Reservas',
+            name="Reservas",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('dia', models.DateField()),
-                ('inicio', models.TimeField()),
-                ('final', models.TimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("dia", models.DateField()),
+                ("inicio", models.TimeField()),
+                ("final", models.TimeField()),
             ],
             options={
-                'verbose_name': 'Reserva',
-                'verbose_name_plural': 'Reservas',
+                "verbose_name": "Reserva",
+                "verbose_name_plural": "Reservas",
             },
         ),
     ]

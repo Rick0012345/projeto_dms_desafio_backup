@@ -6,15 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login_app', '0004_cadastrousuario'),
+        ("login_app", "0004_cadastrousuario"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ImgUser',
+            name="ImgUser",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('imagem', models.ImageField(upload_to='images/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("imagem", models.ImageField(upload_to="images/")),
             ],
         ),
     ]

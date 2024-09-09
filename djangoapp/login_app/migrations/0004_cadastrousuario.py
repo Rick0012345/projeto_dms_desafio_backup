@@ -6,14 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login_app', '0003_reservas'),
+        ("login_app", "0003_reservas"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CadastroUsuario',
+            name="CadastroUsuario",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
             ],
         ),
     ]
