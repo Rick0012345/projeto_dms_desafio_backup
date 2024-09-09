@@ -7,5 +7,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("login_app.urls")),
     path("accounts/", include("allauth.urls")),
-    # path("accounts/profile/perfilU;suario",include('profile.html')),
+    # path("a", include("profile_app.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

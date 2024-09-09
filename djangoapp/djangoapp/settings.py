@@ -26,13 +26,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "login_app",  # .apps.LoginAppConfig'
+    "login_app",
     "django.contrib.sites",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    'allauth.mfa',
 ]
+MFA_SUPPORTED_TYPES = ['totp', 'webauthn','recovery_codes']
 
 SITE_ID = 2
 
