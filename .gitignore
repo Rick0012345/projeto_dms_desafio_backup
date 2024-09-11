@@ -3,4 +3,5 @@ data/
 dotenv_files/
 htmlcov/
 
-kayoduque.py
+default.conf
+certs
