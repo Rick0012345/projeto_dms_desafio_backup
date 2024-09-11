@@ -156,3 +156,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
+
+CSRF_TRUSTED_ORIGINSS = ["https://localhost:8000", "http://localhost:3000"] #usado para "enganar o sistema" e 
+# permitir o uso dos formulários mesmo ainda não tendo ido para produção

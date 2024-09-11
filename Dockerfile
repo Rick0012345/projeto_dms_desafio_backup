@@ -13,13 +13,16 @@ ENV PYTHONUNBUFFERED 1
 # Copia a pasta "djangoapp" e "scripts" para dentro do container.
 COPY djangoapp /djangoapp
 COPY scripts /scripts
+COPY certs/localhost.crt /etc/nginx/ssl/localhost.crt
+COPY certs/localhost.key /etc/nginx/ssl/localhost.key
+COPY default.conf /etc/nginx/conf.d/
 
 # Entra na pasta djangoapp no container
 WORKDIR /djangoapp
 
 # A porta 8000 estará disponível para conexões externas ao container
 # É a porta que vamos usar para o Django.
-EXPOSE 8000
+EXPOSE 443
 
 # RUN executa comandos em um shell dentro do container para construir a imagem. 
 # O resultado da execução do comando é armazenado no sistema de arquivos da 
