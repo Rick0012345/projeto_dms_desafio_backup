@@ -6,7 +6,7 @@ from .models import Coordenada, Profile, Reserva
 import json
 from datetime import datetime
 from decimal import Decimal
-
+from django.contrib.admin.views.decorators import staff_member_required
 
 def loginPage(request):
     return render(request, "account/login.html")
@@ -62,7 +62,7 @@ def registerPage(request):
 
     return render(request, "account/signup.html")
 
-
+@staff_member_required
 def areaProprietario(request):
     query = Coordenada.objects.all()
     coordenadas = []
