@@ -5,6 +5,7 @@ from login_app.views import (
     areaProprietario,
     profile,
     listacampos,
+    fazer_relatorio,
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("accounts/profile/add-campo", areaProprietario, name="alugar-campo"),
     path("accounts/profile/perfilUsuario", profile, name="perfilUsuario"),
     path("accounts/profile/listas", listacampos, name="listacampos"),
+    path("accounts/profile/relatorio", fazer_relatorio, name="relatorio"),
 ]

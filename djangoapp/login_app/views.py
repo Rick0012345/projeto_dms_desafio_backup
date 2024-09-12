@@ -5,6 +5,7 @@ from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileFo
 from .models import Coordenada, Profile, Reserva
 import json
 from datetime import datetime
+from decimal import Decimal
 
 
 def loginPage(request):
@@ -105,3 +106,23 @@ def profile(request):
 
 def listacampos(request):
     return render(request, "pages/listcampos.html")
+
+@login_required
+def fazer_relatorio(request):
+    # Buscar todas as reservas
+    reservas = Reserva.objects.all().order_by('dia', 'inicio')
+    # Calcular o total de todas as reservas
+    total_valor = Decimal('0.00')
+    for reserva in reservas:
+        try:
+            total_valor += Decimal(str(reserva.valor_total))
+        except Exception as e:
+            print(f"Error processing reserva {reserva.id}: {e}")
+            print(f"valor_total: {reserva.valor_total}, type: {type(reserva.valor_total)}")
+    
+    context = {
+        'reservas': reservas,
+        'total_valor': total_valor,
+    }
+    
+    return render(request, "pages/relatorio.html", context)
