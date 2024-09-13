@@ -1,0 +1,37 @@
+
+{% block content %}
+<h1>Relatório de Reservas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Início</th>
+            <th>Fim</th>
+            <th>Valor Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.dia|date:"d/m/Y" }}</td>
+            <td>{{ reserva.inicio|time:"H:i" }}</td>
+            <td>{{ reserva.final|time:"H:i" }}</td>
+            <td>R$ {{ reserva.valor_total|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhuma reserva encontrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3"><strong>Total:</strong></td>
+            <td><strong>R$ {{ total_valor|floatformat:2 }}</strong></td>
+        </tr>
+    </tfoot>
+</table>
+{% endblock %}
+
+<button onclick= "window.print()">Salvar como pdf</button>
