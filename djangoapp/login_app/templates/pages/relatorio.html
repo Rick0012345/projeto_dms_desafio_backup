@@ -1,23 +1,49 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
+</head>
+<body>
 
-{% block content %}
-<h1>Relatório de Reservas</h1>
+<nav class="navbar">
 
+    <div class="navbar-logo">Aluga campos</div>
+
+    <ul class="navbar-menu">
+        <li><a href="{%url 'mfa_index'%}">Ativar Verificação de 2 fatores</a></li>
+        <li><a href="relatorio">Relatório</a></li>
+
+        <li><a href="perfilUsuario">Perfil</a></li>
+        <li><a href="add-campo">Adicionar localidade</a></li>
+        <li><a href="#cntt">Contato</a></li>
+        <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+    </ul>
+</nav>
+
+<h1 id= "title">Relatório de Reservas</h1>
+
+<div id="table-container">
 <table class="table">
-    <thead>
-        <tr>
+    <thead id="table-head">
+        <tr id="table-row">
             <th>Data</th>
             <th>Início</th>
             <th>Fim</th>
             <th>Valor Total</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id = "table-body">
         {% for reserva in reservas %}
         <tr>
-            <td>{{ reserva.dia|date:"d/m/Y" }}</td>
-            <td>{{ reserva.inicio|time:"H:i" }}</td>
-            <td>{{ reserva.final|time:"H:i" }}</td>
-            <td>R$ {{ reserva.valor_total|floatformat:2 }}</td>
+            <td id="table-data">{{ reserva.dia|date:"d/m/Y" }}</td>
+            <td id="table-data">{{ reserva.inicio|time:"H:i" }}</td>
+            <td id="table-data">{{ reserva.final|time:"H:i" }}</td>
+            <td id="table-data">R$ {{ reserva.valor_total|floatformat:2 }}</td>
         </tr>
         {% empty %}
         <tr>
@@ -32,6 +58,7 @@
         </tr>
     </tfoot>
 </table>
-{% endblock %}
-
-<button onclick= "window.print()">Salvar como pdf</button>
+</div>
+<center><button id="btn" onclick= "window.print()">Salvar como pdf</button></center>
+</body>
+</html>

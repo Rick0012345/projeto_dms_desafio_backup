@@ -226,3 +226,10 @@ button[type="submit"] {
     opacity: 1;
     transition: opacity 0.5s ease-in-out; /* Para animação de desaparecimento */
 }
+
+#table-container {
+    display: flex;
+    justify-content: center;
+    color: #369c07;
+    text-decoration-color: #721c24;
+}

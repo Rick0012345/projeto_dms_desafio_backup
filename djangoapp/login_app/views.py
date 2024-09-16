@@ -107,7 +107,7 @@ def profile(request):
 def listacampos(request):
     return render(request, "pages/listcampos.html")
 
-@login_required
+@staff_member_required
 def fazer_relatorio(request):
     # Buscar todas as reservas
     reservas = Reserva.objects.all().order_by('dia', 'inicio')
