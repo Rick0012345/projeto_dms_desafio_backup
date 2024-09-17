@@ -1,6 +1,6 @@
 {% load i18n %}
 <!DOCTYPE html>
-
+{% load static %}
 <html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,9 @@
             {% block head_title %}
             {% endblock head_title %}
         </title>
+        <link rel="stylesheet" href="{% static 'css/navbar_base.css' %}">
         {% block extra_head %}
+
         {% endblock extra_head %}
     </head>
     <body>
@@ -24,9 +26,12 @@
                     </ul>
                 </div>
             {% endif %}
-            <div>
-                <strong>{% trans "Menu:" %}</strong>
-                <ul>
+
+            <nav class="navbar">
+
+            <div class="navbar-logo" >
+                        <strong onclick="window.location.href = '/accounts/profile/'">{% trans "Aluga campos" %}</strong>       </div>
+                <ul class="navbar-menu">
                     {% if user.is_authenticated %}
                         {% url 'account_email' as email_url %}
                         {% if email_url %}
@@ -79,7 +84,8 @@
                         {% endif %}
                     {% endif %}
                 </ul>
-            </div>
+            
+        </nav>
             {% block content %}
             {% endblock content %}
         {% endblock body %}
