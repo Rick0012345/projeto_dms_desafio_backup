@@ -12,15 +12,16 @@
 
 {%endblock extra_head%}
 {% block content %}
-    {% element h1 tags="mfa,index" %}
+    {% element h1 tags="mfa,index" class="page-title" %}
         {% trans "Two-Factor Authentication" %}
     {% endelement %}
+
     {% if "totp" in MFA_SUPPORTED_TYPES %}
-        {% element panel %}
-            {% slot title %}
+        {% element panel class="authenticator-app panel" %}
+            {% slot title class="panel-title" %}
                 {% translate "Authenticator App" %}
             {% endslot %}
-            {% slot body %}
+            {% slot body class="panel-body" %}
                 {% if authenticators.totp %}
                     {% element p %}
                         {% translate "Authentication using an authenticator app is active." %}
@@ -31,11 +32,11 @@
                     {% endelement %}
                 {% endif %}
             {% endslot %}
-            {% slot actions %}
+            {% slot actions class="panel-actions" %}
                 {% url 'mfa_deactivate_totp' as deactivate_url %}
                 {% url 'mfa_activate_totp' as activate_url %}
                 {% if authenticators.totp %}
-                    {% element button href=deactivate_url tags="danger,delete,panel" %}
+                    {% element button href=deactivate_url tags="danger,delete,panel" class="danger" %}
                         {% translate "Deactivate" %}
                     {% endelement %}
                 {% else %}
@@ -46,12 +47,13 @@
             {% endslot %}
         {% endelement %}
     {% endif %}
+
     {% if "webauthn" in MFA_SUPPORTED_TYPES %}
-        {% element panel %}
-            {% slot title %}
+        {% element panel class="security-keys panel" %}
+            {% slot title class="panel-title" %}
                 {% translate "Security Keys" %}
             {% endslot %}
-            {% slot body %}
+            {% slot body class="panel-body" %}
                 {% if authenticators.webauthn|length %}
                     <p>
                         {% blocktranslate count count=authenticators.webauthn|length %}You have added {{ count }} security key.{% plural %}You have added {{ count }} security keys.{% endblocktranslate %}
@@ -60,28 +62,29 @@
                     <p>{% translate "No security keys have been added." %}</p>
                 {% endif %}
             {% endslot %}
-            {% slot actions %}
+            {% slot actions class="panel-actions" %}
                 {% if authenticators.webauthn|length %}
                     {% url 'mfa_list_webauthn' as webauthn_list_url %}
-                    {% element button href=webauthn_list_url %}
+                    {% element button href=webauthn_list_url class="btn" %}
                         {% translate "Manage" %}
                     {% endelement %}
                 {% else %}
                     {% url 'mfa_add_webauthn' as webauthn_add_url %}
-                    {% element button href=webauthn_add_url %}
+                    {% element button href=webauthn_add_url class="btn" %}
                         {% translate "Add" %}
                     {% endelement %}
                 {% endif %}
             {% endslot %}
         {% endelement %}
     {% endif %}
+
     {% if "recovery_codes" in MFA_SUPPORTED_TYPES %}
         {% with total_count=authenticators.recovery_codes.generate_codes|length unused_count=authenticators.recovery_codes.get_unused_codes|length %}
-            {% element panel %}
-                {% slot title %}
+            {% element panel class="recovery-codes panel" %}
+                {% slot title class="panel-title" %}
                     {% translate "Recovery Codes" %}
                 {% endslot %}
-                {% slot body %}
+                {% slot body class="panel-body" %}
                     {% if authenticators.recovery_codes %}
                         {% element p %}
                             {% blocktranslate count unused_count=unused_count %}There is {{ unused_count }} out of {{ total_count }} recovery codes available.{% plural %}There are {{ unused_count }} out of {{ total_count }} recovery codes available.{% endblocktranslate %}
@@ -95,23 +98,23 @@
                 {% if is_mfa_enabled %}
                     {% if authenticators.recovery_codes %}
                         {% if unused_count > 0 %}
-                            {% slot actions %}
+                            {% slot actions class="panel-actions" %}
                                 {% url 'mfa_view_recovery_codes' as view_url %}
-                                {% element button href=view_url tags="panel" %}
+                                {% element button href=view_url class="btn" %}
                                     {% translate "View" %}
                                 {% endelement %}
                             {% endslot %}
-                            {% slot actions %}
+                            {% slot actions class="panel-actions" %}
                                 {% url 'mfa_download_recovery_codes' as download_url %}
-                                {% element button href=download_url tags="secondary,panel" %}
+                                {% element button href=download_url class="secondary btn" %}
                                     {% translate "Download" %}
                                 {% endelement %}
                             {% endslot %}
                         {% endif %}
                     {% endif %}
-                    {% slot actions %}
+                    {% slot actions class="panel-actions" %}
                         {% url 'mfa_generate_recovery_codes' as generate_url %}
-                        {% element button href=generate_url tags="secondary,panel" %}
+                        {% element button href=generate_url class="secondary btn" %}
                             {% translate "Generate" %}
                         {% endelement %}
                     {% endslot %}
@@ -120,3 +123,4 @@
         {% endwith %}
     {% endif %}
 {% endblock content %}
+
