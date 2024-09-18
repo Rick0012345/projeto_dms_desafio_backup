@@ -1,6 +1,8 @@
 /* Estilo geral do formulário */
 body{
     background-color: #68a942;
+    margin: 0;
+    padding: 0;
 }
 p{
     color: #000000;

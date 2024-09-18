@@ -53,6 +53,8 @@
 }
 body{
     background-color: rgb(65, 157, 41);
+    margin: 0;
+    padding: 0;
 }
 /* Estilizando o layout para o dropdown e o formulário lado a lado */
 .container {

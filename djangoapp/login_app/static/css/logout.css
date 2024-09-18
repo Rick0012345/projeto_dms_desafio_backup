@@ -1,0 +1,41 @@
+/* Estilizando o h1 */
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+}
+body{
+    background-color: #68a942;
+    margin: 0;
+    padding: 0;
+}
+/* Estilizando o parágrafo */
+p {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #303030;
+}
+
+/* Estilizando o formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Estilizando o botão */
+button[type="submit"] {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #e04343;
+}

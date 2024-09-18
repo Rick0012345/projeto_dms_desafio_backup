@@ -1,9 +1,14 @@
 {% extends "account/base_reauthenticate.html" %}
 {% load allauth %}
 {% load i18n %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/reauth.css' %}">
+{% endblock extra_head %}
 {% block reauthenticate_content %}
+
     {% element p %}
-        {% blocktranslate %}Enter your password:{% endblocktranslate %}
+        {% blocktranslate %}Enter your password :{% endblocktranslate %}
     {% endelement %}
     {% url 'account_reauthenticate' as action_url %}
     {% element form form=form method="post" action=action_url %}

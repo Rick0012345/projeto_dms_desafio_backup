@@ -1,10 +1,17 @@
 {% extends "socialaccount/base_manage.html" %}
 {% load i18n %}
 {% load allauth %}
+{% load static %}
 {% block head_title %}
     {% trans "Account Connections" %}
 {% endblock head_title %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/connections.css' %}">
+{% endblock extra_head %}
+
+
 {% block content %}
+    
     {% element h1 %}
         {% trans "Account Connections" %}
     {% endelement %}

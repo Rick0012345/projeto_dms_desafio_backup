@@ -1,9 +1,13 @@
 {% extends "mfa/totp/base.html" %}
 {% load allauth i18n %}
+{% load static %}
 {% block head_title %}
     {% translate "Activate Authenticator App" %}
 {% endblock head_title %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/activate.css' %}">{% endblock extra_head %}
 {% block content %}
+
     {% element h1 %}
         {% translate "Activate Authenticator App" %}
     {% endelement %}
