@@ -68,11 +68,11 @@
     </ul>
 {% endif %}
 
-        <form id="coordForm" method="post" class="form" enctype="multipart/form-data">
+        <form id="coordForm" method="post" class="form" enctype="multipart/form-data" onsubmit="return confirmSubmit()">
             {% csrf_token %}
             {{ form.as_p }}
             
-            <button type="submit">Salvar</button>
+            <button id="button_submit"type="submit">Salvar</button>
         </form>
     </div>
 
@@ -81,6 +81,7 @@
     
 
     <script>
+        
         // Função para esconder as mensagens após 10 segundos
         setTimeout(function() {
             const errorContainer = document.querySelector('.messages-error');
@@ -181,11 +182,32 @@
         .bindPopup('Aqui está o campo de futebol!');
     })
     
-    
+    function converterParaSegundos(hora) {
+        var partes = hora.split(":");
+        var horas = Number(partes[0]);
+        var minutos = Number(partes[1]);
+        return (horas * 3600) + (minutos * 60); 
+    }
+function confirmSubmit() {
+        var ini = document.getElementById('id_inicio').value;
+        var fin = document.getElementById('id_final').value;
         
-      
-   
+        var ini_seg = converterParaSegundos(ini)
+        var fin_seg = converterParaSegundos(fin)
+          
+        var duracao = fin_seg - ini_seg;
+        console.log(duracao)
+        var duracao_horas = duracao / 3600;
+        var valor_por_hora = 50;
         
+        console.log('duracao:'+duracao+ ' horario inicial: '+ini_seg + ' horario final: ' +fin_seg)
+        var valor_total = duracao_horas * valor_por_hora;
+
+        return confirm(`Tem certeza que deseja salvar as alterações? O valor total é R$${valor_total.toFixed(2)}.`);  
+
+
+}
+
     </script>
 </body>
 </html>

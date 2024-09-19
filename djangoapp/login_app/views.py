@@ -11,7 +11,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 def loginPage(request):
     return render(request, "account/login.html")
 
-
 @login_required(redirect_field_name="account_login")
 def mainPage(request):
     global reservas
@@ -39,7 +38,7 @@ def mainPage(request):
 
         instancia = Reserva(
             valor_total=valor_total
-        )  # depois trocar para o singular (RESERVA)
+        )  
 
         form = ReservasForm(data=request.POST, instance=instancia)
 
@@ -54,7 +53,10 @@ def mainPage(request):
             print(form.errors)
             messages.error(request, "Erro ao reservar campo")
 
-    context = {"coordenadas": json.dumps(coordenadas), "form": ReservasForm()}
+    context = {"coordenadas": json.dumps(coordenadas),
+                "form": ReservasForm(),
+                
+                }
     return render(request, "pages/main.html", context)
 
 
