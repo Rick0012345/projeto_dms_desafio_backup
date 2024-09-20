@@ -23,7 +23,7 @@
             <li><a href="{%url 'mfa_index'%}">Ativar Verificação de 2 fatores</a></li>
             <li><a href="relatorio">Relatório</a></li>
             <li><a href="perfilUsuario">Perfil</a></li>
-            <li><a href="add-campo">Adicionar localidade</a></li>
+            <li><a href="add-campo">Adicionar Campo</a></li>
             <li><a href="#cntt">Contato</a></li>
             <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
         </ul>
@@ -162,26 +162,19 @@
                 .setContent(popupContent)
                 .openOn(map);
         });
-        {% comment %} testando a inserção de pins customizados no mapa {% endcomment %}
-        var img = L.icon({
-            iconUrl: '{% static 'images/campo-de-futebol.png' %}',
-        });
-        L.marker([-22.915551,  -42.814552], { icon: img }).addTo(map)
-        .bindPopup('Aqui está o campo de futebol!');
         
         var data = {{ coordenadas|safe }}
+        console.log(data);
+        // Exibindo os marcadores salvos no banco de dados
+            data.forEach(function(coordenada) {
+                var img = L.icon({
+                    iconUrl: '{% static 'images/campo-de-futebol.png' %}',
+                });
+                console.log("coordenada")
+                L.marker([coordenada.latitude, coordenada.longitude], { icon: img }).addTo(map)
+                .bindPopup("<a href= http://localhost:8000/accounts/profile/listas> Ver mais </a>")
+            })
 
-// Exibindo os marcadores salvos no banco de dados
-    data.forEach(function(coordenada) {
-        var img = L.icon({
-            iconUrl: '{% static 'images/campo-de-futebol.png' %}',
-        });
-
-        console.log("coordenada")
-        L.marker([coordenada.latitude, coordenada.longitude], { icon: img }).addTo(map)
-        .bindPopup('Aqui está o campo de futebol!');
-    })
-    
     function converterParaSegundos(hora) {
         var partes = hora.split(":");
         var horas = Number(partes[0]);
