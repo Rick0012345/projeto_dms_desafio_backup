@@ -1,5 +1,5 @@
 from django import forms
-from .models import Coordenada, Reserva, Profile
+from .models import Coordenada, Reserva, Profile, DadosCampo
 from datetime import datetime
 from django.contrib.auth.models import User
 
@@ -9,6 +9,13 @@ class CoordenadaForm(forms.ModelForm):
         model = Coordenada
         fields = ["latitude", "longitude", "valor_hora"]
 
+
+class DadosCampoForm(forms.ModelForm):
+
+    class Meta:
+        model = DadosCampo
+        fields = ["endereco","telefone","email"]
+        
 
 class ReservasForm(forms.ModelForm):
     dia = forms.DateField(widget=forms.SelectDateWidget())

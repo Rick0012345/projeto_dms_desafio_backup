@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm
+from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm, DadosCampoForm
 from .models import Coordenada, Profile, Reserva
 import json
 from datetime import datetime
@@ -72,12 +72,19 @@ def areaProprietario(request):
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
     if request.method == "POST":
         form = CoordenadaForm(request.POST)
-        if form.is_valid():
+        form_dadosCampo = DadosCampoForm(request.POST)
+        if form.is_valid() and form_dadosCampo.is_valid():
+            form_dadosCampo.save()
             form.save()
+            messages.success(request, "Cadastrado com sucesso")
             return redirect("alugar-campo")
     else:
         form = CoordenadaForm()
-    context = {"form": form, "coordenadas": json.dumps(coordenadas)}
+        form_dadosCampo = DadosCampoForm()
+    context = {"form": form,
+               "coordenadas": json.dumps(coordenadas),
+               "form_dadosCampo": form_dadosCampo
+               }
     return render(request, "pages/alugarcamp.html", context)
 
 

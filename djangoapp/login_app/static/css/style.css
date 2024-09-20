@@ -112,8 +112,8 @@ body{
 
 /* Estilizando o formulário */
 form {
-    flex: 2; /* Faz com que o formulário ocupe mais espaço que o dropdown */
-    width: 200px;
+    flex: 1; /* Faz com que o formulário ocupe mais espaço que o dropdown */
+    width: 100px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;

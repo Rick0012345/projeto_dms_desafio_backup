@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
-# Create your models here.
+
 class Coordenada(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -14,6 +14,16 @@ class Coordenada(models.Model):
 
     def __str__(self):
         return str(f"Latitude :{self.latitude} | Longitude: {self.longitude}")
+
+
+class DadosCampo(models.Model):
+    endereco = models.CharField(max_length=150)
+    telefone = models.IntegerField(max_length=11)
+    email = models.EmailField()
+    
+    class Meta:
+        verbose_name = "DadosCampo"
+        verbose_name_plural = "DadosCampos"
 
 
 class Reserva(models.Model):

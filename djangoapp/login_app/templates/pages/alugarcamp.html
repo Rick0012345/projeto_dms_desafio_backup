@@ -1,3 +1,4 @@
+
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
@@ -35,6 +36,7 @@
                     <div class="dropdown-content">
                         <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
                         <a href="#" data-coords="-22.9187, -42.8224">Centro</a>
+                    
                         <a href="#" data-coords="-22.93041, -42.883646">São José</a>
                         <a href="#" data-coords="-22.914444, -42.931020">Inoã</a>
                         <a href="#" data-coords="-22.929425, -42.967063">Itaocaia</a>
@@ -45,6 +47,8 @@
                 <form id="campoForm" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    {{form_dadosCampo.as_p}}
+
                     {{ formset.management_form }}
                     {% for form in formset %}
                         <div class="form-group">
@@ -56,14 +60,49 @@
                             {% endfor %}
                         </div>
                     {% endfor %}
+                        
                     <button type="submit">Salvar</button>
                 </form>
+                
             </div>
+            </div>
+            {% if messages %}
+    <ul class="messages-error">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if messages %}
+    <ul class="messages-success">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
             
 
     <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
+        setTimeout(function() {
+            const errorContainer = document.querySelector('.messages-error');
+            const successContainer = document.querySelector('.messages-success');
+            
+            if (errorContainer) {
+                errorContainer.style.display = 'none'; // Esconde a caixa de mensagens de erro
+            }
+            
+            if (successContainer) {
+                successContainer.style.display = 'none'; // Esconde a caixa de mensagens de sucesso
+            }
+        }, 5000); 
         // Inicializando o mapa e definindo suas coordenadas iniciais e nível de zoom
         var map = L.map('map').setView([-22.9187, -42.8224], 15);
 
