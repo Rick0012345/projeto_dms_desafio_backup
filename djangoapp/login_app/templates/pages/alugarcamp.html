@@ -10,7 +10,10 @@
     <!-- Incluindo o CSS do Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+    <link rel="shortcut icon" href="{% static "images\Goal_icon-icons.com_62267.ico" %}" type="image/x-icon">
+
+
+</head> 
 <body>
     <nav class="navbar">
         <div class="navbar-logo" onclick="window.location.href = '/accounts/profile/'">Aluga campos</div>
@@ -86,9 +89,6 @@
     </ul>
 {% endif %}
 
-            
-
-    <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         setTimeout(function() {
@@ -104,7 +104,10 @@
             }
         }, 5000); 
         // Inicializando o mapa e definindo suas coordenadas iniciais e nível de zoom
-        var map = L.map('map').setView([-22.9187, -42.8224], 15);
+        var map = L.map('map',{
+            scrollWheelZoom: true,  // Habilita o zoom ao usar o scroll no mouse
+            touchZoom: true         // Habilita o zoom por toque (pinça)
+        }).setView([-22.9187, -42.8224], 15);
 
         // Adicionando o tile layer do OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
