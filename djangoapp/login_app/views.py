@@ -135,3 +135,8 @@ def fazer_relatorio(request):
     }
     
     return render(request, "pages/relatorio.html", context)
+
+
+def listacampos(request):
+    context = {}
+    return render(request,"pages/listcampos.html", context)
