@@ -1,35 +1,16 @@
+{% extends "pages/base.html" %}
 {% load static %}
 {% load i18n %}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aluga campos</title>
-    <!-- Incluindo o CSS do Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" href="{% static "images\Goal_icon-icons.com_62267.ico" %}" type="image/x-icon">
-    <style>
-       
-    </style>
-</head>
-<body>
-    <nav class="navbar">
+{% endblock extra_head %}
+    
 
-        <div class="navbar-logo" onclick="window.location.href = '/accounts/profile/'">Aluga campos</div>
-
-        <ul class="navbar-menu">
-            <li><a href="{%url 'mfa_index'%}">Ativar Verificação de 2 fatores</a></li>
-            <li><a href="relatorio">Relatório</a></li>
-            <li><a href="perfilUsuario">Perfil</a></li>
-            <li><a href="add-campo">Adicionar Campo</a></li>
-            <li><a href="#cntt">Contato</a></li>
-            <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
-        </ul>
-    </nav>
-
+    {% block content %}
     <div class="content">
         <div class="map-container">
             <div id="map"></div>
@@ -203,8 +184,8 @@ function confirmSubmit() {
 }
 
     </script>
-</body>
-</html>
+    {% endblock content %}
+
 
 
 

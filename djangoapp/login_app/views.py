@@ -19,7 +19,7 @@ def mainPage(request):
 
     for i in query:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-
+        
     reservas = 0
     if request.method == "POST":
         ini = datetime.strptime(request.POST.get("inicio"), "%H:%M")
@@ -51,7 +51,7 @@ def mainPage(request):
 
         else:
             print(form.errors)
-            messages.error(request, "Erro ao reservar campo")
+            messages.error(request, "Erro ao reservar campo, tente marcar outra data ou hora")
 
     context = {"coordenadas": json.dumps(coordenadas),
                 "form": ReservasForm(),
@@ -114,7 +114,8 @@ def profile(request):
 
 
 def listacampos(request):
-    return render(request, "pages/listcampos.html")
+    context = {}
+    return render(request, "pages/listcampos.html",context)
 
 @staff_member_required
 def fazer_relatorio(request):
@@ -136,7 +137,3 @@ def fazer_relatorio(request):
     
     return render(request, "pages/relatorio.html", context)
 
-
-def listacampos(request):
-    context = {}
-    return render(request,"pages/listcampos.html", context)

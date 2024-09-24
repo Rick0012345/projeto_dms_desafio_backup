@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
-
+from django.core.exceptions import ValidationError
 
 class Coordenada(models.Model):
     latitude = models.FloatField()
@@ -40,7 +40,22 @@ class Reserva(models.Model):
 
     def __str__(self):
         return str(f"dia :{self.dia} | inicio: {self.inicio} | final: {self.final}")
+    
 
+    def clean(self):
+       
+        overlapping = Reserva.objects.filter(
+                    # football_field=self.football_field,
+                    dia=self.dia,
+                    inicio__lt=self.final,
+                    final__gt=self.inicio,
+                    # status="confirmed",
+                ).exclude(pk=self.pk)
+        
+        if overlapping.exists():
+            raise ValidationError(
+                _("This time slot overlaps with an existing reservation.")
+            )  
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
