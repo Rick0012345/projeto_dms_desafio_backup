@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm, DadosCampoForm
-from .models import Coordenada, Profile, Reserva
+from .models import Coordenada, Profile, Reserva, DadosCampo
 import json
 from datetime import datetime
 from decimal import Decimal
@@ -113,9 +113,6 @@ def profile(request):
     )
 
 
-def listacampos(request):
-    context = {}
-    return render(request, "pages/listcampos.html",context)
 
 @staff_member_required
 def fazer_relatorio(request):
@@ -136,4 +133,20 @@ def fazer_relatorio(request):
     }
     
     return render(request, "pages/relatorio.html", context)
+
+
+def listacampos(request):
+    query = DadosCampo.objects.all()
+    query_coordenada = Coordenada.objects.all()
+
+    coordenadas = []
+
+    for i in query_coordenada:
+        coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
+    print(query)
+    context = {"dadosCampo": query,
+               "coordenadas": json.dumps(coordenadas)}
+
+    return render(request, "pages/listcampos.html",context)
+
 

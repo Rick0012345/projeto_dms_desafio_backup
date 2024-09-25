@@ -5,6 +5,7 @@
 {% block extra_head %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listacampos.css' %}">
 {% endblock extra_head %}
 
 
@@ -16,21 +17,18 @@
         <div class="map-container">
             <div id="map"></div>
 
-            <div class="container">
-                <div class="dropdown">
-                    <button class="dropbtn">Escolha uma região para registrar o seu campo 
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" data-coords="-22.963530, -42.97589">Itaipuaçu</a>
-                        <a href="#" data-coords="-22.9187, -42.8224">Centro</a>
-                        <a href="#" data-coords="-22.93041, -42.883646">São José</a>
-                        <a href="#" data-coords="-22.914444, -42.931020">Inoã</a>
-                        <a href="#" data-coords="-22.929425, -42.967063">Itaocaia</a>
-                        <a href="#" data-coords="-22.9287, -42.8124">Parque Nanci</a>
+            <div class="card-container">
+                {% for dado in dadosCampo  %}
+
+                    <div class="card">
+
+                        <h4 class ="card-title"> E-mail para contato: {{dado.email}} </h4>
+                        <h4 class="card-title"> Endereço: {{dado.endereco}} </h4>
+                        <h4 class="card-title"> Telefone: {{dado.telefone}} </h4>
+
                     </div>
                 </div>
-            
+                {% endfor %}
 
     <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -53,26 +51,10 @@
         var marker = L.marker([-22.9187, -42.8224]).addTo(map);
         marker.bindPopup('<b>Maricá</b><br>Cidade do Rio de Janeiro').openPopup();
 
-        // Adicionando evento de clique nos itens do dropdown
-        document.querySelectorAll('.dropdown-content a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault(); // Impede o comportamento padrão do link
-                var coords = this.getAttribute('data-coords');
-                updateMap(coords);
-            });
-        });
+        
 
-        // Testando a inserção de pins customizados no mapa
-        var img = L.icon({
-            iconUrl: '{% static 'images/campo-de-futebol.png' %}',
-        });    
-        // Adicionando evento de clique ao mapa para capturar as coordenadas e inserir no formulário
         map.on('click', function(e) {
         var latlng = e.latlng;
-
-    // Preenchendo o formulário com as coordenadas capturadas
-    document.getElementById('id_latitude').value = latlng.lat.toFixed(6);
-    document.getElementById('id_longitude').value = latlng.lng.toFixed(6);
 
     // Exibindo um popup com as coordenadas
     var popupContent = `Latitude: ${latlng.lat.toFixed(6)}<br>Longitude: ${latlng.lng.toFixed(6)}`;
