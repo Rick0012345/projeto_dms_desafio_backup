@@ -21,15 +21,15 @@
                 {% for dado in dadosCampo  %}
 
                     <div class="card">
-
+                        <img src="{{dado.foto.url}}" alt="">
                         <h4 class ="card-title"> E-mail para contato: {{dado.email}} </h4>
                         <h4 class="card-title"> Endereço: {{dado.endereco}} </h4>
                         <h4 class="card-title"> Telefone: {{dado.telefone}} </h4>
 
                     </div>
-                </div>
+           
                 {% endfor %}
-
+            </div>
     <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>

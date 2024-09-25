@@ -14,7 +14,7 @@ class DadosCampoForm(forms.ModelForm):
 
     class Meta:
         model = DadosCampo
-        fields = ["endereco","telefone","email"]
+        fields = ["endereco","telefone","email","foto"]
         
 
 class ReservasForm(forms.ModelForm):

@@ -20,6 +20,10 @@ class DadosCampo(models.Model):
     endereco = models.CharField(max_length=150)
     telefone = models.IntegerField(max_length=11)
     email = models.EmailField()
+    foto = models.ImageField( default= "default.jpg",upload_to="camp_pics")
+    
+    def save(self, *args, **kwargs):
+        super().save()
     
     class Meta:
         verbose_name = "DadosCampo"
