@@ -72,7 +72,7 @@ def areaProprietario(request):
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
     if request.method == "POST":
         form = CoordenadaForm(request.POST)
-        form_dadosCampo = DadosCampoForm(request.POST)
+        form_dadosCampo = DadosCampoForm(request.POST, request.FILES)
         if form.is_valid() and form_dadosCampo.is_valid():
             form_dadosCampo.save()
             form.save()
@@ -140,6 +140,8 @@ def listacampos(request):
     query_coordenada = Coordenada.objects.all()
 
     coordenadas = []
+
+
 
     for i in query_coordenada:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})

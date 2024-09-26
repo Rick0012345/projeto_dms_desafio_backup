@@ -18,10 +18,10 @@ class Coordenada(models.Model):
 
 class DadosCampo(models.Model):
     endereco = models.CharField(max_length=150)
-    telefone = models.IntegerField(max_length=11)
+    telefone = models.CharField(max_length=11)       # TROCAR PARA CHARFIELD DEPOIS
     email = models.EmailField()
     foto = models.ImageField( default= "default.jpg",upload_to="camp_pics")
-    
+
     def save(self, *args, **kwargs):
         super().save()
     

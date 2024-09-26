@@ -11,11 +11,10 @@ class CoordenadaForm(forms.ModelForm):
 
 
 class DadosCampoForm(forms.ModelForm):
-
     class Meta:
         model = DadosCampo
         fields = ["endereco","telefone","email","foto"]
-        
+           
 
 class ReservasForm(forms.ModelForm):
     dia = forms.DateField(widget=forms.SelectDateWidget())

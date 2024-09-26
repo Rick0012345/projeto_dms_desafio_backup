@@ -71,10 +71,17 @@ button:hover {
 }
 
 a {
-    color: #007bff;
+    color: #001f41;
     text-decoration: none;
+    
+
 }
 
 a:hover {
     text-decoration: underline;
 }
+
+
+
+
+

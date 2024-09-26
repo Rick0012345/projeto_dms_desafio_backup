@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="{% static 'css/listacampos.css' %}">
 {% endblock extra_head %}
 
-
-
 {% block content %}
 
     <div class="content">
@@ -25,11 +23,24 @@
                         <h4 class ="card-title"> E-mail para contato: {{dado.email}} </h4>
                         <h4 class="card-title"> Endereço: {{dado.endereco}} </h4>
                         <h4 class="card-title"> Telefone: {{dado.telefone}} </h4>
+                        
+                        
+                        <button onclick="openPopup()">Abrir Feedbacks</button>
 
+                        <div id="overlay" class="overlay"></div>
+
+                        <div id="popup" class="popup">
+                            <h2>Este é um pop-up</h2>
+                            <p>TESTESTESTESTESTEES.</p>
+                            <button class="close-btn" onclick="closePopup()">Fechar</button>
+                        </div>
                     </div>
            
                 {% endfor %}
             </div>
+
+            
+
     <!-- Incluindo o JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -50,8 +61,6 @@
         // Adicionando um marcador em Maricá
         var marker = L.marker([-22.9187, -42.8224]).addTo(map);
         marker.bindPopup('<b>Maricá</b><br>Cidade do Rio de Janeiro').openPopup();
-
-        
 
         map.on('click', function(e) {
         var latlng = e.latlng;
@@ -76,5 +85,20 @@ console.log(data);
         .bindPopup("<a href= http://localhost:8000/accounts/profile/listas> Ver mais </a>")
     })
     
+
+
+ {% comment %}    ############################################################################################# {% endcomment %}
+/* Estilos para o Modal */
+
+function openPopup() {
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
     </script>
     {% endblock content %}
+
