@@ -13,7 +13,7 @@ class CoordenadaForm(forms.ModelForm):
 class DadosCampoForm(forms.ModelForm):
     class Meta:
         model = DadosCampo
-        fields = ["endereco","telefone","email","foto"]
+        fields = ["endereco","telefone","email","foto","nome"]
            
 
 class ReservasForm(forms.ModelForm):
@@ -47,7 +47,7 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ["img"]
 
 class FeedbackForm(forms.ModelForm):
-    
+
     class Meta:
         model = Feedback
         fields = ["nomeUsuario","comentario","avaliacoes"]

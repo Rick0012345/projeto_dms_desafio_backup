@@ -141,9 +141,8 @@ def listacampos(request):
 
     coordenadas = []
     
-    feed = FeedbackForm()
 
-
+    
 
     for i in query_coordenada:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
@@ -156,3 +155,10 @@ def listacampos(request):
     return render(request, "pages/listcampos.html",context)
 
 
+def feedPage(request):
+    query = DadosCampo.objects.all()
+
+    context = {
+        "dadosCampo": query
+    }
+    return render(request,"pages/feedPage.html",context)

@@ -6,6 +6,7 @@ from login_app.views import (
     profile,
     listacampos,
     fazer_relatorio,
+    feedPage
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path("accounts/profile/perfilUsuario", profile, name="perfilUsuario"),
     path("accounts/profile/listas", listacampos, name="listacampos"),
     path("accounts/profile/relatorio", fazer_relatorio, name="relatorio"),
+    path("accounts/profile/feedback",feedPage,name="feedback")
 ]

@@ -17,9 +17,9 @@ class Coordenada(models.Model):
 
 
 class DadosCampo(models.Model):
-    #adicionar nome do campo
+    nome = models.CharField(max_length=50,unique=True,default="Campo")
     endereco = models.CharField(max_length=150)
-    telefone = models.CharField(max_length=11)       # TROCAR PARA CHARFIELD DEPOIS
+    telefone = models.CharField(max_length=11)       
     email = models.EmailField()
     foto = models.ImageField( default= "default.jpg",upload_to="camp_pics")
 

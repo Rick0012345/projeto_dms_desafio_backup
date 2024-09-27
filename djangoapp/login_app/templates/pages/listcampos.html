@@ -18,27 +18,17 @@
             <div class="card-container">
                 {% for dado in dadosCampo %}
                 <div class="card">
+
                     <img src="{{dado.foto.url}}" alt="">
+                    {% comment %} <h3 class="card-title"> Nome: {{dado.nomeCampo}} </h3> {% endcomment %}
                     <h4 class="card-title"> E-mail para contato: {{dado.email}} </h4>
                     <h4 class="card-title"> Endereço: {{dado.endereco}} </h4>
                     <h4 class="card-title"> Telefone: {{dado.telefone}} </h4>
             
-                    <button onclick="openModal()">Abrir Feedbacks</button>
+                    <button onclick="window.location.href='{% url "feedback" %}'">Ver Feedbacks</button>
                 </div>
                 {% endfor %}
 
-
-
-
-
-                <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-btn" onclick="closeModal()">&times;</span>
-                        <h2 id="textModal">Feedback</h2>
-                        <p>{{tag do modelo}} </p>
-                        
-                    </div>
-                </div>
             </div>
             
            
