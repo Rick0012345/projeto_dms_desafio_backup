@@ -1,5 +1,5 @@
 from django import forms
-from .models import Coordenada, Reserva, Profile, DadosCampo
+from .models import Coordenada, Reserva, Profile, DadosCampo, Feedback
 from datetime import datetime
 from django.contrib.auth.models import User
 
@@ -45,3 +45,9 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ["img"]
+
+class FeedbackForm(forms.ModelForm):
+    
+    class Meta:
+        model = Feedback
+        fields = ["nomeUsuario","comentario","avaliacoes"]

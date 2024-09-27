@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm, DadosCampoForm
-from .models import Coordenada, Profile, Reserva, DadosCampo
+from .forms import CoordenadaForm, ReservasForm, UpdateUserForm, UpdateProfileForm, DadosCampoForm,FeedbackForm
+from .models import Coordenada, Profile, Reserva, DadosCampo, Feedback
 import json
 from datetime import datetime
 from decimal import Decimal
@@ -140,12 +140,16 @@ def listacampos(request):
     query_coordenada = Coordenada.objects.all()
 
     coordenadas = []
+    
+    feed = FeedbackForm()
 
 
 
     for i in query_coordenada:
         coordenadas.append({"latitude": i.latitude, "longitude": i.longitude})
-    print(query)
+   
+
+
     context = {"dadosCampo": query,
                "coordenadas": json.dumps(coordenadas)}
 

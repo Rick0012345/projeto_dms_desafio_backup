@@ -17,6 +17,7 @@ class Coordenada(models.Model):
 
 
 class DadosCampo(models.Model):
+    #adicionar nome do campo
     endereco = models.CharField(max_length=150)
     telefone = models.CharField(max_length=11)       # TROCAR PARA CHARFIELD DEPOIS
     email = models.EmailField()
@@ -28,6 +29,10 @@ class DadosCampo(models.Model):
     class Meta:
         verbose_name = "DadosCampo"
         verbose_name_plural = "DadosCampos"
+
+
+
+    
 
 
 class Reserva(models.Model):
@@ -61,9 +66,28 @@ class Reserva(models.Model):
                 _("This time slot overlaps with an existing reservation.")
             )  
 
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField(default="default.jpg", upload_to="profile_pics")
 
     def save(self, *args, **kwargs):
         super().save()
+
+
+
+class Feedback(models.Model):
+    campoAvaliado = models.ForeignKey(DadosCampo,related_name="avaliacoes",on_delete=models.CASCADE)
+    nomeUsuario = models.ForeignKey(Profile,related_name="usuario",on_delete=models.CASCADE)
+    comentario = models.TextField()
+
+    estrelas = [
+        (1,"1 Estrela"),
+        (2,"2 Estrelas"),
+        (3,"3 Estrelas"),
+        (4,"4 Estrelas"),
+        (5,"5 Estrelas")
+    ]
+
+    avaliacoes = models.PositiveSmallIntegerField(default=1, choices=estrelas)
