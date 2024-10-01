@@ -155,19 +155,19 @@ def feedPage(request,id):
     query = DadosCampo.objects.get(id=id)
     form = FeedbackForm()
 
-    feedback = Feedback.objects.all()
+    feedback = Feedback.objects.filter(campoAvaliado=query)
     
     if request.method == "POST":
         form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Feedback enviado com sucesso")
-            return redirect("feedPage")
+            return redirect("feedPage",id=id)
 
     context = {
         "dadosCampo": query,
         "form": form,
-        "feedback": feedback
+        "feedback": feedback,
 
     }
     return render(request,"pages/feedPage.html",context)

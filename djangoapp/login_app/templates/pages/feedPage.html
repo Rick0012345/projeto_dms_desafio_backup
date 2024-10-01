@@ -24,6 +24,7 @@
 
 </div>
 <hr>
+
 <form id="form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
@@ -31,21 +32,19 @@
 
 </form>
 <h1>parte dos feeds</h1>
+{% comment %} {{feedback}} {% endcomment %}
+{% if feedback  %}
+    {% for f in feedback %}
+    <div class="feed-container">
+        <p>Nome do usuário: {{ f.nomeUsuario.user.username }}</p>
+        <p>Comentário: {{ f.comentario }}</p>
+        <p>Avaliação: {{ f.get_avaliacoes.display }} Estrelas</p>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>sem feedbacks</p>
 
-{% for feedback in feedbacks %}
-    <p>Nome do usuário: {{ feedback.nomeUsuario.user.username }}</p>
-    <p>Comentário: {{ feedback.comentario }}</p>
-    <p>Avaliação: {{ feedback.avaliacoes }} Estrelas</p>
-{% endfor %}
+{% endif %}
 
-<button onclick="teste()">botao</button>
-
-<script>
-    function teste() {
-        console.log("feed","{{feed}}");
-        console.log("feedcom:", "{{ feed.comentario }}");
-        console.log("Nome do usuário:", "{{nomeUsuario.user.username}}");
-    }
-</script>
 
 {% endblock content %}

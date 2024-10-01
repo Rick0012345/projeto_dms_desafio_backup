@@ -16,5 +16,6 @@ urlpatterns = [
     path("accounts/profile/perfilUsuario", profile, name="perfilUsuario"),
     path("accounts/profile/listas", listacampos, name="listacampos"),
     path("accounts/profile/relatorio", fazer_relatorio, name="relatorio"),
-    path("accounts/profile/feedback/<int:id>",feedPage,name="feedback")
+    path("accounts/profile/feedback/<int:id>",feedPage,name="feedback"),
+    path('campo/<int:id>/feedback/', feedPage, name='feedPage'),
 ]
