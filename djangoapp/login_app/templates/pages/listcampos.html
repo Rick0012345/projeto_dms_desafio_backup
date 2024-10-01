@@ -24,8 +24,9 @@
                     <h4 class="card-title"> E-mail para contato: {{dado.email}} </h4>
                     <h4 class="card-title"> Endereço: {{dado.endereco}} </h4>
                     <h4 class="card-title"> Telefone: {{dado.telefone}} </h4>
-            
-                    <button onclick="window.location.href='{% url "feedback" %}'">Ver Feedbacks</button>
+                    
+                    <p id="cont">{{dado.id}} </p>
+                    <button onclick="window.location.href='{% url "feedback" id=dado.id %}'">Ver Feedbacks</button>
                 </div>
                 {% endfor %}
 

@@ -30,9 +30,9 @@ class DadosCampo(models.Model):
         verbose_name = "DadosCampo"
         verbose_name_plural = "DadosCampos"
 
+    def __str__(self):
+        return self.nome
 
-
-    
 
 
 class Reserva(models.Model):
@@ -50,7 +50,6 @@ class Reserva(models.Model):
     def __str__(self):
         return str(f"dia :{self.dia} | inicio: {self.inicio} | final: {self.final}")
     
-
     def clean(self):
        
         overlapping = Reserva.objects.filter(
@@ -67,7 +66,6 @@ class Reserva(models.Model):
             )  
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField(default="default.jpg", upload_to="profile_pics")
@@ -75,7 +73,8 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save()
 
-
+    def __str__(self):
+        return self.user.username
 
 class Feedback(models.Model):
     campoAvaliado = models.ForeignKey(DadosCampo,related_name="avaliacoes",on_delete=models.CASCADE)

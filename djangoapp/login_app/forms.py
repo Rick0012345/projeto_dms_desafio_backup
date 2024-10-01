@@ -50,4 +50,4 @@ class FeedbackForm(forms.ModelForm):
 
     class Meta:
         model = Feedback
-        fields = ["nomeUsuario","comentario","avaliacoes"]
+        fields = ["campoAvaliado","nomeUsuario","comentario","avaliacoes"]

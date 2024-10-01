@@ -1,17 +1,20 @@
 .navbar {
-    background-color: #333;
+    /* background-color: #333; */
     color: white;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: Arial, sans-serif;
+    animation: nav-animation 7.5s infinite alternate;
+    
 }
 
 .navbar-logo {
     font-size: 24px;
     cursor: pointer;
     font-weight: bold;
+
 }
 
 .navbar-menu {
@@ -23,6 +26,7 @@
 
 .navbar-menu li {
     margin: 0 15px;
+    
 }
 
 .navbar-menu a {
@@ -33,4 +37,18 @@
 
 .navbar-menu a:hover {
     text-decoration: underline;
+
+}
+
+
+
+
+@keyframes nav-animation {
+    from{
+        background-color: #020202;
+    }
+
+    to{
+        background-color: #568b38;
+    }
 }
