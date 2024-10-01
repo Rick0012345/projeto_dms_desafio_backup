@@ -154,6 +154,8 @@ def listacampos(request):
 def feedPage(request,id):
     query = DadosCampo.objects.get(id=id)
     form = FeedbackForm()
+
+    feedback = Feedback.objects.all()
     
     if request.method == "POST":
         form = FeedbackForm(request.POST)
@@ -165,7 +167,7 @@ def feedPage(request,id):
     context = {
         "dadosCampo": query,
         "form": form,
+        "feedback": feedback
 
-        
     }
     return render(request,"pages/feedPage.html",context)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from login_app.models import Coordenada, Reserva,DadosCampo
+from login_app.models import Coordenada, Reserva,DadosCampo,Feedback
 from .models import Profile
 
 
@@ -17,5 +17,8 @@ class AdressAdmin(admin.ModelAdmin):
 class AddressAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Feedback)
+class AddressAdmin(admin.ModelAdmin):
+    pass
 
 admin.site.register(Profile)

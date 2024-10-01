@@ -30,5 +30,22 @@
     <input type="submit" value="Submit">
 
 </form>
-</center>
+<h1>parte dos feeds</h1>
+
+{% for feedback in feedbacks %}
+    <p>Nome do usuário: {{ feedback.nomeUsuario.user.username }}</p>
+    <p>Comentário: {{ feedback.comentario }}</p>
+    <p>Avaliação: {{ feedback.avaliacoes }} Estrelas</p>
+{% endfor %}
+
+<button onclick="teste()">botao</button>
+
+<script>
+    function teste() {
+        console.log("feed","{{feed}}");
+        console.log("feedcom:", "{{ feed.comentario }}");
+        console.log("Nome do usuário:", "{{nomeUsuario.user.username}}");
+    }
+</script>
+
 {% endblock content %}
