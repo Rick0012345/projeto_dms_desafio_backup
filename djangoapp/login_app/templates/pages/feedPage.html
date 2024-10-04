@@ -2,7 +2,6 @@
 {% load static %}
 {% load i18n %}
 
-
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
 {% endblock extra_head %}
@@ -31,12 +30,13 @@
     <input type="submit" value="Submit">
 
 </form>
+
 <h1>parte dos feeds</h1>
-{% comment %} {{feedback}} {% endcomment %}
+
 {% if feedback  %}
     {% for f in feedback %}
     <div class="feed-container">
-        <p>Nome do usuário: {{ f.nomeUsuario.user.username }}</p>
+        <p>{{ f.nomeUsuario }}</p>
         <p>Comentário: {{ f.comentario }}</p>
         <p>Avaliação: {{ f.get_avaliacoes.display }} Estrelas</p>
     </div>

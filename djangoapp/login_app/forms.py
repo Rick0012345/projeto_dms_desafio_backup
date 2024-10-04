@@ -47,7 +47,7 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ["img"]
 
 class FeedbackForm(forms.ModelForm):
-
+    
     class Meta:
         model = Feedback
-        fields = ["campoAvaliado","nomeUsuario","comentario","avaliacoes"]
+        fields = ["comentario","avaliacoes"]

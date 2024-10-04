@@ -78,8 +78,9 @@ class Profile(models.Model):
 
 class Feedback(models.Model):
     campoAvaliado = models.ForeignKey(DadosCampo,related_name="avaliacoes",on_delete=models.CASCADE)
-    nomeUsuario = models.ForeignKey(Profile,related_name="usuario",on_delete=models.CASCADE)
+    nomeUsuario = models.ForeignKey(User,related_name="usuario",on_delete=models.CASCADE)
     comentario = models.TextField()
+    
 
     estrelas = [
         (1,"1 Estrela"),
@@ -90,3 +91,5 @@ class Feedback(models.Model):
     ]
 
     avaliacoes = models.PositiveSmallIntegerField(default=1, choices=estrelas)
+    def __str__(self):
+        return self.nomeUsuario.username

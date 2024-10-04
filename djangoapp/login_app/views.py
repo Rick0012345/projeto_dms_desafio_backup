@@ -37,7 +37,9 @@ def mainPage(request):
         valor_total = duracao_em_horas * valor_por_hora
 
         instancia = Reserva(
-            valor_total=valor_total
+            valor_total=valor_total,
+
+
         )  
 
         form = ReservasForm(data=request.POST, instance=instancia)
@@ -154,20 +156,28 @@ def listacampos(request):
 def feedPage(request,id):
     query = DadosCampo.objects.get(id=id)
     form = FeedbackForm()
-
+   
     feedback = Feedback.objects.filter(campoAvaliado=query)
     
     if request.method == "POST":
-        form = FeedbackForm(request.POST)
+        instancia = Feedback(
+            nomeUsuario = request.user,
+            campoAvaliado = query ,
+            )
+
+        form = FeedbackForm(request.POST,instance=instancia)
+
         if form.is_valid():
             form.save()
             messages.success(request, "Feedback enviado com sucesso")
+            
             return redirect("feedPage",id=id)
 
     context = {
         "dadosCampo": query,
         "form": form,
         "feedback": feedback,
+        
 
     }
     return render(request,"pages/feedPage.html",context)
